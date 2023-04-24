@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('day_birth')->nullable()->unique();
             $table->string('id_card_file')->nullable()->unique();
             $table->string('selfie_file')->nullable()->unique();
-            $this->softDelete();
+            $table->softDeletes();
         });
     }
 
