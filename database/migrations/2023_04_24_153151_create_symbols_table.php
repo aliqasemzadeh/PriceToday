@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('market_capital')->nullable();
             $table->string('options')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

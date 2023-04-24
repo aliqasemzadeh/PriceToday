@@ -13,19 +13,20 @@ class SymbolSeeder extends Seeder
      */
     public function run(): void
     {
-        $category = new Symbol();
-        $category->symbol = 'BTC';
-        $category->title = __('Bitcoin');
-        $category->coingecko_id = 'bitcoin';
-        $category->sort_order = 1;
-        $category->save();
+        $symbol = new Symbol();
+        $symbol->symbol = 'BTC';
+        $symbol->title = __('Bitcoin');
+        $symbol->coingecko_id = 'bitcoin';
+        $symbol->sort_order = 1;
+        $symbol->save();
 
 
-        $category = new Symbol();
-        $category->symbol = 'ETC';
-        $category->title = __('Ethereum');
-        $category->coingecko_id = 2;
-        $category->save();
+        $symbol = new Symbol();
+        $symbol->symbol = 'ETC';
+        $symbol->title = __('Ethereum');
+        $symbol->coingecko_id = 'ethereum';
+        $symbol->sort_order = 2;
+        $symbol->save();
 
     }
 }

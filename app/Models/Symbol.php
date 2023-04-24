@@ -11,7 +11,7 @@ class Symbol extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public static function getSymbolIcon($symbol == 'BTC') : string
+    public static function getSymbolIcon($symbol = 'BTC') : string
     {
         if (file_exists(public_path("cryptocurrency-icons/" . strtolower($symbol)) . ".svg")) {
             return asset("cryptocurrency-icons/" . strtolower($symbol) . ".svg");
