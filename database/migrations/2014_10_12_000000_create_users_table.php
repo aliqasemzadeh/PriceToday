@@ -14,14 +14,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            //Personal Information
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('national_code')->nullable()->unique();
-            $table->string('year_birth')->nullable()->unique();
-            $table->string('month_birth')->nullable()->unique();
-            $table->string('day_birth')->nullable()->unique();
-
             // Contact Information
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
