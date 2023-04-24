@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('verification_code');
+
+            // Status Information
             $table->string('status')->default('registered');
-            //Personal Information
+
+            // Personal Information
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('national_code')->nullable()->unique();
@@ -25,6 +28,10 @@ return new class extends Migration
             $table->string('day_birth')->nullable()->unique();
             $table->string('id_card_file')->nullable()->unique();
             $table->string('selfie_file')->nullable()->unique();
+
+            // Admin Information
+            $table->longText('note')->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
     }
