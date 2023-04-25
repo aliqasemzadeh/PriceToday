@@ -53,7 +53,7 @@ class UpdateRateJob implements ShouldQueue
             'symbol' => $this->symbol->symbol,
         ]);
 
-        $symbolItem = Symbol::where('symbol'. $this->symbol->symbol)->first();
+        $symbolItem = Symbol::where('symbol', $this->symbol->symbol)->first();
         $symbolItem->price = $price;
         $symbolItem->save();
 
