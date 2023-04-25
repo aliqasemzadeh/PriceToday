@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->string('symbol');
+            $table->string('symbol')->index();
             $table->double('price');
             $table->double('1h')->nullable();
             $table->double('24h')->nullable();

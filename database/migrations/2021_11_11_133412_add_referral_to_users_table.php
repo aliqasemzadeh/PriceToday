@@ -22,7 +22,7 @@ class AddReferralToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('referred_by')->nullable()->index();
-            $table->string('affiliate_id')->unique();
+            $table->string('affiliate_id')->unique()->nullable();
         });
     }
 
