@@ -9,7 +9,7 @@
             @if(config('bap.home.display-carousels'))
                 <div class="row row-deck row-cards mb-2">
                     <div class="col-md-12">
-                        <div class="card mb-2">
+                        <div class="card">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">{{ __('bap.carousels') }}</h3>
@@ -51,29 +51,19 @@
             @if(config('bap.home.display-prices'))
                 <div class="row row-deck row-cards mb-2">
                     @foreach($symbols as $symbol)
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div class="subheader">{{ __('coins.'.$symbol->title) }}</div>
-                                    <div class="ms-auto lh-1">
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown"
-                                               aria-haspopup="true" aria-expanded="false">Last 7 days</a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item active" href="#">Last 7 days</a>
-                                                <a class="dropdown-item" href="#">Last 30 days</a>
-                                                <a class="dropdown-item" href="#">Last 3 months</a>
-                                            </div>
-                                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="subheader">{{ __('coins.'.$symbol->title) }}</div>
                                     </div>
-                                </div>
-                                <div class="h1 mb-3">
-                                    <img width="64px" height="64px" src="{{ asset('cryptocurrency-icons\svg\color'. '\\'.strtolower($symbol->symbol).'.svg') }}" />
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <div>{{ $symbol->price }}</div>
-                                    <div class="ms-auto">
+                                    <div class="h1 mb-3">
+                                        <img width="32px" height="32px"
+                                             src="{{ asset('cryptocurrency-icons\svg\color'. '\\'.strtolower($symbol->symbol).'.svg') }}"/>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>{{ $symbol->price }}</div>
+                                        <div class="ms-auto">
                         <span class="text-green d-inline-flex align-items-center lh-1">
                           7% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
@@ -82,11 +72,11 @@
                                                                                     fill="none"></path><path
                                   d="M3 17l6 -6l4 4l8 -8"></path><path d="M14 7l7 0l0 7"></path></svg>
                         </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             @endif
