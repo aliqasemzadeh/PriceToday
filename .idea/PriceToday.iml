@@ -17,6 +17,16 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mobiledetect/mobiledetectlib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/constant_time_encoding" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pragmarx/google2fa" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/archtechx/enums" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dragon-code/contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dragon-code/pretty-array" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dragon-code/support" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/attributes" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/common" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/http-statuses" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/lang" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/publisher" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php81" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/wireui/wireui" />
     </content>
     <orderEntry type="inheritedJdk" />
