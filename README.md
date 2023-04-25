@@ -3,7 +3,7 @@ This is limited script to text message or any types message to user base on pric
 
 
 ## Why open source and free scripts?
-This script is free and work with crypto marketplace api.(E.g. CodinGecko and ...)
+This script is free and work with crypto marketplace api.(E.g. CodinGecko and ...) and you can easily customize it.
 
 ### Send Text Message
 All Text Message (SMS) are pre-paid services then we get charge here.
