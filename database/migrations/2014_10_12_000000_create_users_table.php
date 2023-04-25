@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->foreignId('user_verify_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('register_ip_address')->nullable();
             $table->longText('note')->nullable();
             $table->timestamps();
             $table->softDeletes();

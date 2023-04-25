@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('symbols', function (Blueprint $table) {
             $table->id();
+            $table->string('symbol')->unique()->index();
+            $table->string('title');
+            $table->string('coingecko_id');
+            $table->bigInteger('sort_order')->default(1);
+            $table->double('price')->nullable();
+            $table->bigInteger('rank')->nullable();
+            $table->bigInteger('market_capital')->nullable();
+            $table->string('options')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
