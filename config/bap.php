@@ -1,6 +1,6 @@
 <?php
 return [
-    'name' => 'Base Admin Panel',
+    'name' => 'Price Today',
     'container-app' => 'container',
     'container-panel' => 'container-fluid',
     'container-admin' => 'container-fluid',
