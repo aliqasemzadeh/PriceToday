@@ -57,21 +57,44 @@
                                     <div class="d-flex align-items-center">
                                         <div class="subheader">{{ __('coins.'.$symbol->title) }}</div>
                                     </div>
-                                    <div class="h1 mb-3">
-                                        <img width="32px" height="32px"
-                                             src="{{ asset('cryptocurrency-icons\svg\color'. '\\'.strtolower($symbol->symbol).'.svg') }}"/>
+
+
+                                    <div class="row g-0 text-center mt-2">
+                                        <div class="col-sm-4 col-md-4 align-items-center">
+                                            <img width="32px" height="32px"
+                                                 src="{{ asset('cryptocurrency-icons\svg\color'. '\\'.strtolower($symbol->symbol).'.svg') }}" />
+                                        </div>
+                                        <div class="col-8 col-md-8 align-items-center">
+                                            <img src="https://www.coingecko.com/coins/{{$symbol->coingecko_number}}/sparkline.svg" />
+                                        </div>
                                     </div>
-                                    <div class="d-flex">
+
+                                    <div class="d-flex align-items-center">
                                         <div>{{ $symbol->price }}</div>
                                         <div class="ms-auto">
-                        <span class="text-green d-inline-flex align-items-center lh-1">
-                          7% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
-                               viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                               stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"
-                                                                                    fill="none"></path><path
-                                  d="M3 17l6 -6l4 4l8 -8"></path><path d="M14 7l7 0l0 7"></path></svg>
-                        </span>
+                                            @if(($symbol->percent * 100) < 0)
+                                                <span class="text-red d-inline-flex align-items-center lh-1">
+                                                  {{ round($symbol->percent * 100,2,PHP_ROUND_HALF_UP) }}% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
+                                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                                                       viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                       stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"
+                                                                                                            fill="none"></path><path
+                                                          d="M3 17l6 -6l4 4l8 -8"></path><path d="M14 7l7 0l0 7"></path></svg>
+                                                </span>
+                                            @elseif(($symbol->percent* 100) > 0)
+                                                <span class="text-green d-inline-flex align-items-center lh-1">
+                                                  {{ round($symbol->percent * 100,2,PHP_ROUND_HALF_UP) }}% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
+                                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                       <path d="M3 7l6 6l4 -4l8 8"></path>
+                                                       <path d="M21 10l0 7l-7 0"></path>
+                                                    </svg>
+
+                                            @else
+                                                <span class="text-yellow d-inline-flex align-items-center lh-1">
+                                                    0%<svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l14 0"></path></svg>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

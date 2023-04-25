@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('symbol')->unique()->index();
             $table->string('title');
             $table->string('coingecko_id');
+            $table->string('coingecko_number');
             $table->bigInteger('sort_order')->default(1);
             $table->double('price')->nullable();
+            $table->double('percent')->nullable();
             $table->bigInteger('rank')->nullable();
             $table->bigInteger('market_capital')->nullable();
             $table->string('options')->nullable();

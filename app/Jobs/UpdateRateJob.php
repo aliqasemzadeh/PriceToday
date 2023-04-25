@@ -10,6 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
 
 class UpdateRateJob implements ShouldQueue
 {
@@ -29,33 +31,37 @@ class UpdateRateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $curl = curl_init();
+        $symbols_array = [];
+        $symbols = Symbol::select(['symbol'])->get();
+        foreach ($symbols as $symbol) {
+            $symbols_array[$symbol->symbol] = $symbol->symbol . 'USDT';
+        }
+        $client = new Client();
+        try {
+            $response = $client->get('https://api.binance.com/api/v3/ticker/24hr');
+            if ($response->getStatusCode() == 200) {
+                $bodyData = json_decode($response->getBody()->getContents(), true);
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => env('COINGECKO_ENDPOINT') . 'coins/' . $this->symbol->coingecko_id. '/tickers',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-        ));
+                foreach ($bodyData as $symbol_ticker) {
+                    $symbol = $symbol_ticker['symbol'];
+                    if (in_array($symbol, $symbols_array)) {
+                        Rate::create([
+                            'price' => $symbol_ticker['lastPrice'],
+                            'symbol' => $this->symbol->symbol,
+                        ]);
+                        $symbolItem = Symbol::where('symbol', $this->symbol->symbol)->first();
+                        $symbolItem->price = $symbol_ticker['lastPrice'];
+                        $symbolItem->percent = $symbol_ticker['priceChangePercent'];
+                        $symbolItem->save();
+                    }
+                }
+            } else {
+                Log::critical("UpdateRateJob:" . $response->getStatusCode());
+            }
+        } catch (\Exception $exception) {
+            Log::critical("UpdateRateJob:" . $exception->getMessage());
+        }
 
-        $response = curl_exec($curl);
-        curl_close($curl);
-
-        $dataArray = json_decode($response, true);
-
-        $price = $dataArray['tickers'][0]['last'];
-        Rate::create([
-            'price' => $price,
-            'symbol' => $this->symbol->symbol,
-        ]);
-
-        $symbolItem = Symbol::where('symbol', $this->symbol->symbol)->first();
-        $symbolItem->price = $price;
-        $symbolItem->save();
 
     }
 }

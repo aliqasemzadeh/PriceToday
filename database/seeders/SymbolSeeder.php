@@ -15,17 +15,35 @@ class SymbolSeeder extends Seeder
     {
         $symbol = new Symbol();
         $symbol->symbol = 'BTC';
-        $symbol->title = __('Bitcoin');
+        $symbol->title = 'Bitcoin';
         $symbol->coingecko_id = 'bitcoin';
+        $symbol->coingecko_number = 1;
         $symbol->sort_order = 1;
         $symbol->save();
 
 
         $symbol = new Symbol();
-        $symbol->symbol = 'ETC';
-        $symbol->title = __('Ethereum');
+        $symbol->symbol = 'ETH';
+        $symbol->title = 'Ethereum';
         $symbol->coingecko_id = 'ethereum';
+        $symbol->coingecko_number = 279;
         $symbol->sort_order = 2;
+        $symbol->save();
+
+        $symbol = new Symbol();
+        $symbol->symbol = 'USDT';
+        $symbol->title = 'Tether';
+        $symbol->coingecko_id = 'tether';
+        $symbol->coingecko_number = 325;
+        $symbol->sort_order = 3;
+        $symbol->save();
+
+        $symbol = new Symbol();
+        $symbol->symbol = 'BNB';
+        $symbol->title = 'Binance Coin';
+        $symbol->coingecko_id = 'binancecoin';
+        $symbol->coingecko_number = 825;
+        $symbol->sort_order = 3;
         $symbol->save();
     }
 }
