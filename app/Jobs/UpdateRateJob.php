@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Rate;
+use App\Models\Symbol;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -51,5 +52,10 @@ class UpdateRateJob implements ShouldQueue
             'price' => $price,
             'symbol' => $this->symbol->symbol,
         ]);
+
+        $symbolItem = Symbol::where('symbol'. $this->symbol->symbol)->first();
+        $symbolItem->price = $price;
+        $symbolItem->save();
+
     }
 }

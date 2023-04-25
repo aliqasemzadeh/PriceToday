@@ -24,43 +24,6 @@
 <body class="antialiased" x-data="{ darkTheme: $persist(false) }" :class="darkTheme ? '' : 'theme-dark'">
 <div class="wrapper">
 
-    <header class="header">
-        <div class="container aos-init aos-animate" data-aos="fade-down">
-            <nav class="row items-center">
-                <div class="col-auto"><a class="logo" aria-label="Tabler" href="/"></a></div>
-                <div class="col-auto ml-auto">
-                    <div class="d-none md:d-block">
-                        <div class="navbar">
-                            <div class="navbar-dropdown" data-headlessui-state="">
-                                <button class="navbar-link active" type="button" aria-expanded="false"
-                                        data-headlessui-state="" id="headlessui-popover-button-:R15ib6:">UI Kit
-                                </button>
-                            </div>
-                            <a class="navbar-link" href="/emails">Email templates</a><a class="navbar-link"
-                                                                                        href="/icons"><span
-                                    class="d-none lg:d-inline">Over <!-- -->4100<!-- --> </span>Icons</a><a
-                                class="navbar-link" href="/docs/getting-started">Documentation</a>
-                            <div class="navbar-item"><a href="https://github.com/sponsors/codecalm" class="btn"
-                                                        target="_blank" rel="noopener noreferrer">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="icon icon-tabler icon-tabler-heart icon text-red icon-filled" width="24"
-                                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
-                                    </svg>
-                                    <span>Sponsor<span class="d-none lg:d-inline"> <!-- -->project</span></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:d-none">
-                        <button class="navbar-toggle"><span></span><span></span><span></span><span></span></button>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-
     <header class="navbar navbar-expand-md navbar-dark d-print-none">
         <div class="{{ config('bap.container-app', 'container') }}">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">

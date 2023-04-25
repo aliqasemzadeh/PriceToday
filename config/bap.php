@@ -13,6 +13,8 @@ return [
         'display-carousels' => 1,
         'count-carousels' => 5,
         'display-articles' => 1,
+        'display-prices' => 1,
         'count-articles' => 5,
+        'count-prices' => 8,
     ]
 ];

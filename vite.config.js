@@ -21,6 +21,10 @@ export default defineConfig({
                 {
                     src: 'resources/favicon',
                     dest: '.././'
+                },
+                {
+                    src: 'node_modules/cryptocurrency-icons/svg',
+                    dest: '.././cryptocurrency-icons'
                 }
             ]
         })
