@@ -1,18 +1,37 @@
-import * as path from "path";
+import path from 'path';
 import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import laravel, { refreshPaths } from 'laravel-vite-plugin';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
-    root: path.resolve(__dirname, 'src'),
+    plugins: [
+        laravel({
+            input: ['resources/scss/app.scss', 'resources/js/app.js'],
+            refresh: [
+                ...refreshPaths,
+                'app/Http/Livewire/**',
+            ],
+        }),
+        viteStaticCopy({
+            targets: [
+                {
+                    src: 'resources/images',
+                    dest: 'public/images'
+                },
+                {
+                    src: 'resources/favicon',
+                    dest: 'public/favicon'
+                }
+            ]
+        })
+    ],
     resolve: {
         alias: {
             '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
         }
     },
-    plugins: [
-        laravel({
-            input: ['resources/sass/app.scss', 'resources/js/app.js'],
-            refresh: true,
-        }),
-    ],
+    server: {
+        port: 8080,
+        hot: true
+    }
 });
