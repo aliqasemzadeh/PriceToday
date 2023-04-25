@@ -16,11 +16,11 @@ export default defineConfig({
             targets: [
                 {
                     src: 'resources/images',
-                    dest: 'public/images'
+                    dest: '.././'
                 },
                 {
                     src: 'resources/favicon',
-                    dest: 'public/favicon'
+                    dest: '.././'
                 }
             ]
         })
