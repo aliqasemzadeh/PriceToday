@@ -23,7 +23,9 @@ class CreateUserVerifiesTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('id_number')->nullable();
-            $table->string('birth_at')->nullable();
+            $table->integer('birth_day')->nullable();
+            $table->integer('birth_month')->nullable();
+            $table->integer('birth_year')->nullable();
             $table->string('zipcode')->nullable();
             $table->string('phone')->nullable();
             $table->string('country')->nullable();
