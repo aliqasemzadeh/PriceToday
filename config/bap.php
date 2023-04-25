@@ -1,7 +1,7 @@
 <?php
 return [
     'name' => 'Price Today',
-    'container-app' => 'container',
+    'container-app' => 'container-xl',
     'container-panel' => 'container-fluid',
     'container-admin' => 'container-fluid',
     'admin-prefix-url' => 'admin',
