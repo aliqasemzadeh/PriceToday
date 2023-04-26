@@ -123,7 +123,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-10">
-                                        <h3 class="h1">Tabler Icons</h3>
+                                        <h3 class="h1">{{ __('bap.alert_me') }}</h3>
                                         <div class="markdown text-muted">
                                             All icons come from the Tabler Icons set and are MIT-licensed. Visit
                                             <a href="https://tabler-icons.io" target="_blank"
@@ -134,7 +134,7 @@
                                         </div>
                                         <div class="mt-3">
                                             <a href="https://tabler-icons.io" class="btn btn-primary" target="_blank"
-                                               rel="noopener">Download icons</a>
+                                               rel="noopener">{{ __('bap.subscribe') }}</a>
                                         </div>
                                     </div>
                                 </div>

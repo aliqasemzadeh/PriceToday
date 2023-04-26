@@ -115,6 +115,8 @@ return [
     'edit_team' => 'Edit Team',
     'uploaded' => 'Uploaded',
     'request_sent' => 'Request sent.',
+    'alert_me' => 'Alert Me!',
+    'subscribe' => 'Subscribe',
     'category_types' => [
         'article' => 'Article',
         'ticket' => 'Ticket',
