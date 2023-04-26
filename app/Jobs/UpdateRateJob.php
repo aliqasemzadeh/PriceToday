@@ -43,8 +43,11 @@ class UpdateRateJob implements ShouldQueue
                 $bodyData = json_decode($response->getBody()->getContents(), true);
 
                 foreach ($bodyData as $symbol_ticker) {
+
                     $symbol = $symbol_ticker['symbol'];
                     if (in_array($symbol, $symbols_array)) {
+                        Log::error($symbol_ticker['lastPrice']);
+                        Log::error($symbol_ticker['lastPrice']);
                         Rate::create([
                             'price' => $symbol_ticker['lastPrice'],
                             'symbol' => $this->symbol->symbol,
