@@ -45,5 +45,13 @@ class SymbolSeeder extends Seeder
         $symbol->coingecko_number = 825;
         $symbol->sort_order = 3;
         $symbol->save();
+
+        $symbol = new Symbol();
+        $symbol->symbol = 'USDC';
+        $symbol->title = 'USD Coin';
+        $symbol->coingecko_id = 'usd-coin';
+        $symbol->coingecko_number = 6319;
+        $symbol->sort_order = 4;
+        $symbol->save();
     }
 }
