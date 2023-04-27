@@ -175,6 +175,7 @@
       <path value="$PROJECT_DIR$/vendor/yadahan/laravel-authentication-log" />
       <path value="$PROJECT_DIR$/vendor/beberlei/assert" />
       <path value="$PROJECT_DIR$/vendor/romanzipp/laravel-queue-monitor" />
+      <path value="$PROJECT_DIR$/vendor/codenix-sv/coingecko-api" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('coingecko_number');
             $table->bigInteger('sort_order')->default(1);
             $table->double('price')->nullable();
-            $table->double('percent')->nullable();
-            $table->bigInteger('rank')->nullable();
-            $table->bigInteger('market_capital')->nullable();
+            $table->double('market_cap')->nullable();
+            $table->double('change_24h')->nullable();
+            $table->double('vol_24h')->nullable();
             $table->string('options')->nullable();
             $table->timestamps();
             $table->softDeletes();
