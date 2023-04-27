@@ -45,6 +45,7 @@ class UpdateRateJob implements ShouldQueue
                 foreach ($bodyData as $symbol_ticker) {
 
                     $symbol = $symbol_ticker['symbol'];
+                    Log::info($symbol);
                     if (in_array($symbol, $symbols_array)) {
                         Rate::create([
                             'price' => $symbol_ticker['lastPrice'],
