@@ -32,30 +32,28 @@ class UpdateRateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $symbols = Symbol::select(['coingecko_id'])->get()->toArray();
-        foreach ($symbols as $symbol) {
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.coingecko.com/api/v3/simple/price?ids=' . $symbolsString . '&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'GET',
-            ));
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.coingecko.com/api/v3/simple/price?ids=' . $this->symbol->coingecko_id . '&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
 
-            $response = curl_exec($curl);
+        $response = curl_exec($curl);
 
-            curl_close($curl);
+        curl_close($curl);
 
-            $data = json_decode($response, true);
-            $symbol->price = $data[$symbol->coingecko_id]['usd'];
-            $symbol->market_cap = $data[$symbol->coingecko_id]['usd_market_cap'];
-            $symbol->vol_24h = $data[$symbol->coingecko_id]['usd_24h_vol'];
-            $symbol->change_24h = $data[$symbol->coingecko_id]['usd_24h_change'];
-            $symbol->save();
-        }
+        $data = json_decode($response, true);
+        $this->symbol->price = $data[$this->symbol->coingecko_id]['usd'];
+        $this->symbol->market_cap = $data[$this->symbol->coingecko_id]['usd_market_cap'];
+        $this->symbol->vol_24h = $data[$this->symbol->coingecko_id]['usd_24h_vol'];
+        $this->symbol->change_24h = $data[$this->symbol->coingecko_id]['usd_24h_change'];
+        $this->symbol->save();
+
     }
 }
