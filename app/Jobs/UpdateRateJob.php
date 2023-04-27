@@ -46,8 +46,6 @@ class UpdateRateJob implements ShouldQueue
 
                     $symbol = $symbol_ticker['symbol'];
                     if (in_array($symbol, $symbols_array)) {
-                        Log::error($symbol_ticker['lastPrice']);
-                        Log::error($symbol_ticker['priceChangePercent']);
                         Rate::create([
                             'price' => $symbol_ticker['lastPrice'],
                             'symbol' => $this->symbol->symbol,
