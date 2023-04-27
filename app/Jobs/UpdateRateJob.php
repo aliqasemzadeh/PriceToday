@@ -31,12 +31,11 @@ class UpdateRateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $symbols = Symbol::all();
-        foreach ($symbols as $symbol) {
+        $symbols = Symbol::select(['coingecko_id'])->getArray();
+        $symbolsString = join(",", $symbols);
             $curl = curl_init();
-
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.coingecko.com/api/v3/simple/price?ids='.$symbol->coingecko_id.'&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true',
+                CURLOPT_URL => 'https://api.coingecko.com/api/v3/simple/price?ids=' . $symbolsString . '&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -51,12 +50,12 @@ class UpdateRateJob implements ShouldQueue
             curl_close($curl);
 
             $data = json_decode($response, true);
-
-            $symbol->price = $data[$symbol->coingecko_id]['usd'];
-            $symbol->market_cap = $data[$symbol->coingecko_id]['usd_market_cap'];
-            $symbol->vol_24h = $data[$symbol->coingecko_id]['usd_24h_vol'];
-            $symbol->change_24h = $data[$symbol->coingecko_id]['usd_24h_change'];
-            $symbol->save();
-        }
+            foreach ($symbols as $symbol) {
+                $symbol->price = $data[$symbol->coingecko_id]['usd'];
+                $symbol->market_cap = $data[$symbol->coingecko_id]['usd_market_cap'];
+                $symbol->vol_24h = $data[$symbol->coingecko_id]['usd_24h_vol'];
+                $symbol->change_24h = $data[$symbol->coingecko_id]['usd_24h_change'];
+                $symbol->save();
+            }
     }
 }
