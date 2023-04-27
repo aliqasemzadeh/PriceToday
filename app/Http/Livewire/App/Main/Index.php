@@ -24,7 +24,7 @@ class Index extends Component
         }
 
         if(config('bap.home.display-prices')) {
-            $symbols = Symbol::orderBy('sort_order', 'DESC')->take(config('bap.home.count-prices'))->get();
+            $symbols = Symbol::inRandomOrder()->take(config('bap.home.count-prices'))->get();
             $displayItems['symbols'] = $symbols;
         }
 

@@ -62,7 +62,7 @@
                                     <div class="row g-0 text-center mt-2">
                                         <div class="col-sm-4 col-md-4 align-items-center">
                                             <img width="32px" height="32px"
-                                                 src="{{ asset('cryptocurrency-icons\svg\color'. '\\'.strtolower($symbol->symbol).'.svg') }}" />
+                                                 src="{{ $symbol->getSymbolIcon() }}" />
                                         </div>
                                         <div class="col-8 col-md-8 align-items-center">
                                             <img src="https://www.coingecko.com/coins/{{$symbol->coingecko_number}}/sparkline.svg" />
