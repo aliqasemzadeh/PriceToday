@@ -32,7 +32,7 @@ class UpdateRateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $symbols = Symbol::select(['coingecko_id'])->getArray();
+        $symbols = Symbol::select(['coingecko_id'])->get();
         $symbolsString = join(",", $symbols);
         Log::info('https://api.coingecko.com/api/v3/simple/price?ids=' . $symbolsString . '&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true');
 
@@ -53,6 +53,7 @@ class UpdateRateJob implements ShouldQueue
         curl_close($curl);
 
         $data = json_decode($response, true);
+        Log::info(serialize($data));
         foreach ($symbols as $symbol) {
             $symbol->price = $data[$symbol->coingecko_id]['usd'];
             $symbol->market_cap = $data[$symbol->coingecko_id]['usd_market_cap'];
