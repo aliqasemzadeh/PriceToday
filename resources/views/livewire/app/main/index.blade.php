@@ -61,7 +61,7 @@
 
                                     <div class="row g-0 text-center mt-2">
                                         <div class="col-sm-4 col-md-4 align-items-center">
-                                            <img width="32px" height="32px"
+                                            <img class="rounded" width="32px" height="32px"
                                                  src="{{ $symbol->getSymbolIcon() }}" />
                                         </div>
                                         <div class="col-8 col-md-8 align-items-center">
@@ -73,7 +73,6 @@
                                         <div>{{ $symbol->price }}</div>
                                         <div class="ms-auto">
                                             @if($symbol->change_24h > 0)
-
                                                 <span class="text-green d-inline-flex align-items-center lh-1">
                                                   {{ round($symbol->change_24h, 2,PHP_ROUND_HALF_UP) }} % <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
                                                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
