@@ -9,7 +9,6 @@
         "alajusticia/laravel-expirable": "^2.0",
         "aliqasemzadeh/livewire-bootstrap-modal": "dev-master",
         "arcanedev/log-viewer": "^10.0",
-        "codenix-sv/coingecko-api": "^1.0",
         "creativeorange/gravatar": "^1.0",
         "cybercog/laravel-ban": "^4.7",
         "guzzlehttp/guzzle": "^7.2",

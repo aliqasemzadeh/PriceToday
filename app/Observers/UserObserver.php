@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Jobs\UserCreateJob;
+use App\Jobs\UserUpdateJob;
+use App\Models\User;
 use Illuminate\Support\Facades\Request;
 
 class UserObserver
