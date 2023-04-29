@@ -75,20 +75,22 @@
                                             @if($symbol->change_24h > 0)
                                                 <span class="text-green d-inline-flex align-items-center lh-1">
                                                   {{ round($symbol->change_24h, 2,PHP_ROUND_HALF_UP) }} % <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                       <path d="M3 7l6 6l4 -4l8 8"></path>
-                                                       <path d="M21 10l0 7l-7 0"></path>
-                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                         stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"
+                                                                                                              fill="none"></path><path
+                                                            d="M3 17l6 -6l4 4l8 -8"></path><path d="M14 7l7 0l0 7"></path></svg>
                                             @elseif($symbol->change_24h < 0)
 
                                                 <span class="text-red d-inline-flex align-items-center lh-1">
                                                 {{ round($symbol->change_24h, 2,PHP_ROUND_HALF_UP) }} % <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
-                                                       viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                                       stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"
-                                                                                                            fill="none"></path><path
-                                                          d="M3 17l6 -6l4 4l8 -8"></path><path d="M14 7l7 0l0 7"></path></svg>
+
+                                                                                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                       <path d="M3 7l6 6l4 -4l8 8"></path>
+                                                       <path d="M21 10l0 7l-7 0"></path>
+                                                    </svg>
+
                                                 </span>
 
                                             @else
