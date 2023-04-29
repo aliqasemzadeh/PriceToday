@@ -72,7 +72,7 @@
                                     <div class="d-flex align-items-center">
                                         <div>{{ $symbol->price }}</div>
                                         <div class="ms-auto">
-                                            @if($symbol->change_24h < 0)
+                                            @if($symbol->change_24h > 0)
 
                                                 <span class="text-green d-inline-flex align-items-center lh-1">
                                                   {{ round($symbol->change_24h, 2,PHP_ROUND_HALF_UP) }} % <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
@@ -81,7 +81,7 @@
                                                        <path d="M3 7l6 6l4 -4l8 8"></path>
                                                        <path d="M21 10l0 7l-7 0"></path>
                                                     </svg>
-                                            @elseif($symbol->change_24h > 0)
+                                            @elseif($symbol->change_24h < 0)
 
                                                 <span class="text-red d-inline-flex align-items-center lh-1">
                                                 {{ round($symbol->change_24h, 2,PHP_ROUND_HALF_UP) }} % <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
