@@ -117,6 +117,7 @@ return [
     'request_sent' => 'Request sent.',
     'alert_me' => 'Alert Me!',
     'subscribe' => 'Subscribe',
+    'upload' => 'Upload',
     'category_types' => [
         'article' => 'Article',
         'ticket' => 'Ticket',

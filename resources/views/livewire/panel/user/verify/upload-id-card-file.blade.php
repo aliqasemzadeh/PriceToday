@@ -13,9 +13,7 @@
                         @enderror
                     </div>
                     <div class="input-group mb-1">
-
                         <input type="text" value="{{ __('bap.id_should_be_visible') }}" class="form-control" placeholder="subdomain" autocomplete="off">
-
                     </div>
                 </div>
             </div>
@@ -24,5 +22,5 @@
                 <button type="submit" class="btn btn-primary">{{ __('bap.upload') }}<button>
             </div>
         </form>
-    </div>
+</div>
 
