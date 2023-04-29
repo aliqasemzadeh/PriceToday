@@ -24,7 +24,7 @@ class Index extends Component
         }
 
         if(config('bap.home.display-prices')) {
-            $symbols = Symbol::orderBy('created_at', 'DESC')->take(config('bap.home.count-prices'))->get();
+            $symbols = Symbol::orderBy('market_cap', 'DESC')->take(config('bap.home.count-prices'))->get();
             $displayItems['symbols'] = $symbols;
         }
 
