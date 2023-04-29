@@ -41,8 +41,8 @@
         </div>
     </div>
     @endauth
-    <div class="nav-item dropdown">
-        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+    <div class="nav-item dropdown" x-data="{ menuShow: false }">
+        <a href="#" class="nav-link d-flex lh-1 text-reset p-0"x-on:click="menuShow = ! menuShow" data-bs-toggle="dropdown" aria-label="Open user menu">
 
             @auth
                 <span class="avatar avatar-sm" style="background-image: url({{ auth()->user()->gravatar }})"></span>
@@ -58,7 +58,7 @@
             @endguest
         </a>
 
-        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" x-show="menuShow">
             @auth
                 <a href="{{ route('user.verify') }}" class="dropdown-item">{{ __('bap.account_verify') }}</a>
                 <a href="{{ route('user.mobile') }}" class="dropdown-item">{{ __('bap.mobile') }}</a>
