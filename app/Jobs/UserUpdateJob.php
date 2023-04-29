@@ -30,6 +30,7 @@ class UserUpdateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        $this->user->register_ip_address = $this->ipAddress;
+        $this->user->save();
     }
 }
