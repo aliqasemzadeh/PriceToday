@@ -14,7 +14,7 @@ class UserObserver
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function created(User $user)
+    public function created(User $user): void
     {
         UserCreateJob::dispatch($user, Request::ip());
     }
@@ -25,7 +25,7 @@ class UserObserver
      */
     public function updated(User $user): void
     {
-        // ...
+        UserUpdateJob::dispatch($user, Request::ip());
     }
 
     /**
