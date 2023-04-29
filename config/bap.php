@@ -15,6 +15,6 @@ return [
         'display-articles' => 1,
         'display-prices' => 1,
         'count-articles' => 5,
-        'count-prices' => 8,
+        'count-prices' => 80,
     ]
 ];
