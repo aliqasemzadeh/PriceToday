@@ -25,7 +25,7 @@ class Create extends Component
             'symbol' => ['required', Rule::unique('symbols')],
             'title' => ['string', 'nullable'],
             'coingecko_id' => ['string', 'nullable'],
-            'coingecko_number' => ['number', 'nullable'],
+            'coingecko_number' => ['numeric', 'nullable'],
         ]);
 
         $symbol = new Symbol();

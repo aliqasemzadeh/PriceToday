@@ -41,7 +41,7 @@ class Edit extends Component
             'symbol' => ['required', Rule::unique('symbols')->ignore($this->symbolItem->id)],
             'title' => ['string', 'nullable'],
             'coingecko_id' => ['string', 'nullable'],
-            'coingecko_number' => ['number', 'nullable'],
+            'coingecko_number' => ['numeric', 'nullable'],
         ]);
 
         $this->symbolItem->symbol = $this->symbol;
