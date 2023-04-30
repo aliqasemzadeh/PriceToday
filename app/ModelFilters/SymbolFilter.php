@@ -2,6 +2,8 @@
 
 namespace App\ModelFilters;
 
+use EloquentFilter\ModelFilter;
+
 class SymbolFilter extends ModelFilter
 {
     /**
