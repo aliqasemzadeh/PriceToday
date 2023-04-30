@@ -22,7 +22,7 @@ class Create extends Component
         }
 
         $this->validate([
-            'symbol' => ['required', 'symbol', Rule::unique('symbols')],
+            'symbol' => ['required', Rule::unique('symbols')],
             'title' => ['string', 'nullable'],
             'coingecko_id' => ['string', 'nullable'],
             'coingecko_number' => ['number', 'nullable'],

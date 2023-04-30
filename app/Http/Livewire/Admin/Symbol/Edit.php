@@ -13,11 +13,9 @@ class Edit extends Component
     use LivewireAlert;
     public $symbolItem;
     public $symbol;
-    public $email;
-    public $password;
-    public $first_name;
-    public $last_name;
     public $title;
+    public $coingecko_id;
+    public $coingecko_number;
 
 
     public function mount(Symbol $symbol)
@@ -40,7 +38,7 @@ class Edit extends Component
         }
 
         $this->validate([
-            'symbol' => ['required', 'symbol', Rule::unique('symbols')->ignore($this->symbolItem->id)],
+            'symbol' => ['required', Rule::unique('symbols')->ignore($this->symbolItem->id)],
             'title' => ['string', 'nullable'],
             'coingecko_id' => ['string', 'nullable'],
             'coingecko_number' => ['number', 'nullable'],
