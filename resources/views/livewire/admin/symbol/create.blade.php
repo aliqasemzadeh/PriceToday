@@ -2,7 +2,7 @@
     <form wire:submit.prevent="create">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('bap.edit_user') }}</h5>
+                <h5 class="modal-title">{{ __('bap.create_user') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('bap.close') }}"></button>
             </div>
             <div class="modal-body">
