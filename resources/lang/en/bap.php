@@ -118,6 +118,7 @@ return [
     'alert_me' => 'Alert Me!',
     'subscribe' => 'Subscribe',
     'upload' => 'Upload',
+    'symbols' => 'Symbols',
     'category_types' => [
         'article' => 'Article',
         'ticket' => 'Ticket',

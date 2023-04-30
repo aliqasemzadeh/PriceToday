@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Symbol;
 
 use App\Models\Symbol;
+use App\Models\User;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -98,6 +99,8 @@ class Index extends Component
             return abort(403);
         }
 
-        return view('livewire.admin.symbol.index')->layout('layouts.admin');
+        $symbols = Symbol::filter(['search' => $this->search])->orderBy($this->sortColumn, $this->sortDirection)->paginate($this->perPage);
+
+        return view('livewire.admin.symbol.index', compact('symbols'))->layout('layouts.admin');
     }
 }

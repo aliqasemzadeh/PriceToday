@@ -62,6 +62,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['re
             Route::get('/support/ticket/archive', \App\Http\Livewire\Admin\Support\Ticket\Archive::class)->name('admin.support.ticket.archive');
             Route::get('/support/ticket/view/{ticket}', \App\Http\Livewire\Admin\Support\Ticket\View::class)->name('admin.support.ticket.view');
 
+            Route::get('/symbol/index', \App\Http\Livewire\Admin\Symbol\Index::class)->name('admin.symbol.index');
+
         });
     });
 
