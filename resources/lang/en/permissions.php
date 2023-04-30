@@ -54,4 +54,9 @@ return [
     'admin_team_create' => 'Create Team',
     'admin_team_users' => 'Manage Team Users',
 
+    'admin_symbol_index' => 'View Symbol Index',
+    'admin_symbol_edit' => 'Edit Team',
+    'admin_symbol_delete' => 'Delete Team',
+    'admin_symbol_create' => 'Create Team',
+
 ];
