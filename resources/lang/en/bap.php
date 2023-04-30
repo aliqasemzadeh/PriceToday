@@ -120,8 +120,11 @@ return [
     'upload' => 'Upload',
     'symbols' => 'Symbols',
     'symbol' => 'Symbol',
+    'create_symbol' => 'Create Symbol',
+    'edit_symbol' => 'Edit Symbol',
     'coingecko_id ' => 'CoinGecko',
     'coingecko_number ' => 'CoinGecko Chart Number',
+    'sort_order ' => 'Sort Order',
     'category_types' => [
         'article' => 'Article',
         'ticket' => 'Ticket',
