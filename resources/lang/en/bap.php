@@ -119,6 +119,9 @@ return [
     'subscribe' => 'Subscribe',
     'upload' => 'Upload',
     'symbols' => 'Symbols',
+    'symbol' => 'Symbol',
+    'coingecko_id ' => 'CoinGecko',
+    'coingecko_number ' => 'CoinGecko Chart Number',
     'category_types' => [
         'article' => 'Article',
         'ticket' => 'Ticket',

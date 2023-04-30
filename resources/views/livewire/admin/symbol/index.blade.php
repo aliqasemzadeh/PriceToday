@@ -116,19 +116,30 @@
                         @endif
                     </th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($symbols as $symbol)
                     <tr>
-                        <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select User" value="{{ $category->id }}" name="selectedItems" wire:model="selectedItems"></td>
+                        <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select Symbol" value="{{ $symbol->id }}" name="selectedItems" wire:model="selectedItems"></td>
                         <td>{{ $symbol->id }}</td>
-                        <td>{{ $symbol->title }}</td>
+                        <td>
+                            <div class="d-flex py-1 align-items-center">
+                                <span class="avatar me-2" style="background-image: url({{ $symbol->getSymbolIcon() }})"></span>
+                                <div class="flex-fill">
+                                    <div class="font-weight-medium">{{ $symbol->title }}</div>
+                                </div>
+                            </div>
+                        </td>
                         <td>{{ $symbol->symbol }}</td>
                         <td>{{ $symbol->coingecko_id }}</td>
+                        <td>
+                            <img src="https://www.coingecko.com/coins/{{$symbol->coingecko_number}}/sparkline.svg" />
+                        </td>
                         <td class="text-end">
                             @can('admin_symbol_edit')
-                                <button onclick="Livewire.emit('showModal', 'admin.setting.category.edit', '{{ json_encode($symbol->id) }}')" class="btn btn-primary btn-icon btn-sm">
+                                <button onclick="Livewire.emit('showModal', 'admin.symbol.edit', '{{ json_encode($symbol->id) }}')" class="btn btn-primary btn-icon btn-sm">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/edit -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg>
                                 </button>
