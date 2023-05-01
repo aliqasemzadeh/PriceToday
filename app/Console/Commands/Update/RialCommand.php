@@ -45,6 +45,6 @@ class RialCommand extends Command
         curl_close($curl);
         $data = json_decode($response, true);
 
-        Rate::create(['symbol' => 'IRR', 'price' => $data['data']['currencies']['USDT']]);
+        Rate::create(['symbol' => 'IRR', 'price' => $data['data']['currencies']['USDT']['price']]);
     }
 }
