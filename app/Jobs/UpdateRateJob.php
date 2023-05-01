@@ -32,30 +32,35 @@ class UpdateRateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => env('COINGECKO_ENDPOINT') . 'simple/price?ids=' . $this->symbol->coingecko_id . '&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-        ));
+        try {
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => env('COINGECKO_ENDPOINT') . 'simple/price?ids=' . $this->symbol->coingecko_id . '&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'GET',
+            ));
 
-        $response = curl_exec($curl);
+            $response = curl_exec($curl);
 
-        curl_close($curl);
+            curl_close($curl);
 
-        $data = json_decode($response, true);
-        $this->symbol->price = $data[trim($this->symbol->coingecko_id)]['usd'];
-        $this->symbol->market_cap = $data[trim($this->symbol->coingecko_id)]['usd_market_cap'];
-        $this->symbol->vol_24h = $data[trim($this->symbol->coingecko_id)]['usd_24h_vol'];
-        $this->symbol->change_24h = $data[trim($this->symbol->coingecko_id)]['usd_24h_change'];
-        $this->symbol->save();
+            $data = json_decode($response, true);
+            $this->symbol->price = $data[trim($this->symbol->coingecko_id)]['usd'];
+            $this->symbol->market_cap = $data[trim($this->symbol->coingecko_id)]['usd_market_cap'];
+            $this->symbol->vol_24h = $data[trim($this->symbol->coingecko_id)]['usd_24h_vol'];
+            $this->symbol->change_24h = $data[trim($this->symbol->coingecko_id)]['usd_24h_change'];
+            $this->symbol->save();
 
-        Rate::create(['symbol' => $this->symbol->symbol, 'price' => $this->symbol->price ]);
+            Rate::create(['symbol' => $this->symbol->symbol, 'price' => $this->symbol->price ]);
+        } catch (\Exception $e) {
+            Log::error("Update Rate:".$e->getMessage());
+        }
+
 
     }
 }
