@@ -16,7 +16,11 @@ class Symbol extends Component
 
     public function create_alert()
     {
-        $this->alert('success', __('bap.please_login_first'));
+        if(auth()->check()) {
+            $this->alert('success', __('bap.added'));
+        } else {
+            $this->alert('success', __('bap.please_login_first'));
+        }
     }
 
     public function render()
