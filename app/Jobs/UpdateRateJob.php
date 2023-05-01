@@ -55,5 +55,7 @@ class UpdateRateJob implements ShouldQueue
         $this->symbol->change_24h = $data[$this->symbol->coingecko_id]['usd_24h_change'];
         $this->symbol->save();
 
+        Rate::create(['symbol' => $this->symbol->sysmbol, 'price' => $this->symbol->price ]);
+
     }
 }
