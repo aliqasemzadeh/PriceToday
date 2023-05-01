@@ -52,7 +52,7 @@
                 <div class="row row-deck row-cards mb-2">
                     @foreach($symbols as $symbol)
                         <div class="col-sm-6 col-lg-3">
-                            <div class="card">
+                            <div class="card"  onclick="Livewire.emit('showModal', 'app.alert.symbol', '{{ json_encode($symbol->id) }}')">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="subheader">{{ __('coins.'.$symbol->title) }}</div>
