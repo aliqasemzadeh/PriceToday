@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('symbol_id');
             $table->bigInteger('user_id');
-            $table->double('less_than')->default(0);
-            $table->double('more_than')->default(0);
-            $table->double('change_percent')->default(0);
+            $table->double('less_than')->default(0)->nullable();
+            $table->double('more_than')->default(0)->nullable();
+            $table->double('change_percent')->default(0)->nullable();
+            $table->string('time')->default("12:00:00")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
