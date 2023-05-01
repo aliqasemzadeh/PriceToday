@@ -4,14 +4,15 @@ namespace App\Http\Livewire\App\Alert;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use App\Models\Symbol;
 
-class Symbol extends Component
+class Create extends Component
 {
     use LivewireAlert;
-    public \App\Models\Symbol $symbol;
-    public function mount($symbol)
+    public Symbol $symbol;
+    public function mount(Symbol $symbol)
     {
-        $this->symbol = \App\Models\Symbol::findOrFail($symbol);
+        $this->symbol = $symbol;
     }
 
     public function create_alert()
@@ -22,9 +23,8 @@ class Symbol extends Component
             $this->alert('success', __('bap.please_login_first'));
         }
     }
-
     public function render()
     {
-        return view('livewire.app.alert.symbol');
+        return view('livewire.app.alert.create');
     }
 }

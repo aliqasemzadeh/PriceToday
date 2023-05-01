@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('alert_symbols', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('symbol_id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('symbol_id')->index();
+            $table->bigInteger('user_id')->index();
             $table->double('less_than')->default(0)->nullable();
             $table->double('more_than')->default(0)->nullable();
             $table->double('change_percent')->default(0)->nullable();
-            $table->string('time')->default("12:00:00")->nullable();
+            $table->double('hour')->default("11")->nullable();
+            $table->double('minute')->default("59")->nullable();
+            $table->string('display_unit')->default("USDT")->index();
+            $table->string('status')->default("active")->index();
             $table->timestamps();
             $table->softDeletes();
         });

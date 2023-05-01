@@ -10,4 +10,9 @@ class AlertSymbol extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'symbol_id',
+        'user_id',
+    ];
 }
