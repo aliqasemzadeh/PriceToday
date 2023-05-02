@@ -6,6 +6,7 @@ use App\Jobs\UpdateRateJob;
 use App\Models\Rate;
 use App\Models\Symbol;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class RateCommand extends Command
 {
@@ -28,10 +29,8 @@ class RateCommand extends Command
      */
     public function handle()
     {
-        $symbols = Symbol::all();
-        foreach($symbols as $symbol)
-        {
-            UpdateRateJob::dispatch($symbol)->delay(10);
-        }
+        $symbols = Symbol::select(['coingecko_id'])->get()->implode('coingecko_id', ',');
+        UpdateRateJob::dispatch($symbols);
+
     }
 }
