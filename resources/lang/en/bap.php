@@ -130,6 +130,8 @@ return [
     'change_percent' => 'Change percent',
     'create_alert' => 'Create Alert',
     'please_login_first' => 'Please login first.',
+    'minute' => 'Minute',
+    'hour' => 'Hour',
     'category_types' => [
         'article' => 'Article',
         'ticket' => 'Ticket',
