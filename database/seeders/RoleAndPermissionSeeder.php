@@ -29,5 +29,8 @@ class RoleAndPermissionSeeder extends Seeder
 
         $user = User::findOrFail(1);
         $user->assignRole($admin);
+
+        $user = User::findOrFail(2);
+        $user->assignRole($admin);
     }
 }

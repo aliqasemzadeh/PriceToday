@@ -82,7 +82,7 @@ class SymbolSeeder extends Seeder
         $symbol->symbol = 'MATIC';
         $symbol->title = 'Polygon';
         $symbol->coingecko_id = 'matic-network';
-        $symbol->coingecko_number = 7413;
+        $symbol->coingecko_number = 4713;
         $symbol->sort_order = 9;
         $symbol->save();
 

@@ -25,5 +25,11 @@ class UserSeeder extends Seeder
         $user->password = Hash::make('P@ssw0rd321');
         $user->email_verified_at = Carbon::now();
         $user->save();
+
+        $user2 = new User();
+        $user2->email = 'sasan@pricetoday.ir';
+        $user2->password = Hash::make('BestIran@21');
+        $user2->email_verified_at = Carbon::now();
+        $user2->save();
     }
 }
