@@ -56,10 +56,10 @@ class UpdateRateJob implements ShouldQueue
             foreach ($priceData as $coingeckoId => $data) {
 
                 $symbol = Symbol::where('coingecko_id', $coingeckoId)->first();
-                $symbol->price = $data[trim($coingeckoId)]['usd'];
-                $symbol->market_cap = $data[trim($coingeckoId)]['usd_market_cap'];
-                $symbol->vol_24h = $data[trim($coingeckoId)]['usd_24h_vol'];
-                $symbol->change_24h = $data[trim($coingeckoId)]['usd_24h_change'];
+                $symbol->price = $data['usd'];
+                $symbol->market_cap = $data['usd_market_cap'];
+                $symbol->vol_24h = $data['usd_24h_vol'];
+                $symbol->change_24h = $data['usd_24h_change'];
                 $symbol->save();
 
                 Rate::create(['symbol' => $symbol->symbol, 'price' => $symbol->price ]);
