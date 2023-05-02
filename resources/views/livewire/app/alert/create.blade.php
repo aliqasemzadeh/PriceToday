@@ -10,17 +10,17 @@
                     <div class="col-md-12">
 
                         <div class="mb-3">
-                            <label class="form-label" for="price_less_than">{{ __('bap.price_less_than') }}</label>
-                            <input type="text" wire:model="price_less_than" class="form-control @error('price_less_than') is-invalid @enderror" name="price_less_than" placeholder="{{ __('bap.price_less_than') }}">
-                            @error('price_less_than')
+                            <label class="form-label" for="less_than">{{ __('bap.less_than') }}</label>
+                            <input type="text" wire:model="less_than" class="form-control @error('less_than') is-invalid @enderror" name="less_than" placeholder="{{ __('bap.less_than') }}">
+                            @error('less_than')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="price_more_than">{{ __('bap.price_more_than') }}</label>
-                            <input type="text" wire:model="price_more_than" class="form-control @error('price_more_than') is-invalid @enderror" name="price_more_than" placeholder="{{ __('bap.price_more_than') }}">
-                            @error('price_more_than')
+                            <label class="form-label" for="more_than">{{ __('bap.more_than') }}</label>
+                            <input type="text" wire:model="more_than" class="form-control @error('more_than') is-invalid @enderror" name="more_than" placeholder="{{ __('bap.more_than') }}">
+                            @error('more_than')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

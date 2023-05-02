@@ -22,6 +22,8 @@ return new class extends Migration
             $table->double('minute')->default("59")->nullable();
             $table->string('display_unit')->default("USDT")->index();
             $table->string('status')->default("active")->index();
+            $table->string('on_time')->default("active")->index();
+            $table->longText('options')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
