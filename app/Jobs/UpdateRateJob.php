@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
 
@@ -64,6 +65,8 @@ class UpdateRateJob implements ShouldQueue
 
                 Rate::create(['symbol' => $symbol->symbol, 'price' => $symbol->price ]);
             }
+
+            Cache::forget('symbols');
 
 
         } catch (\Exception $e) {

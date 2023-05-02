@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Main;
 use App\Models\Article;
 use App\Models\Carousel;
 use App\Models\Symbol;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 class Index extends Component
@@ -24,7 +25,13 @@ class Index extends Component
         }
 
         if(config('bap.home.display-prices')) {
-            $symbols = Symbol::orderBy('market_cap', 'DESC')->take(config('bap.home.count-prices'))->get();
+            if (Cache::has('symbols')) {
+                $symbols = Cache::get('symbols');
+            } else {
+                $symbols = Symbol::orderBy('market_cap', 'DESC')->take(config('bap.home.count-prices'))->get();
+                Cache::pull('symbols', $symbols);
+            }
+
             $displayItems['symbols'] = $symbols;
         }
 
