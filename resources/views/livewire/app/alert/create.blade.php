@@ -34,6 +34,24 @@
                         </div>
 
                     </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="hour">{{ __('bap.hour') }}</label>
+                            <input type="number" min="0" max="23" wire:model="hour" class="form-control @error('hour') is-invalid @enderror" name="hour" placeholder="{{ __('bap.hour') }}">
+                            @error('hour')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="minute">{{ __('bap.minute') }}</label>
+                            <input type="number" min="0" max="59" wire:model="minute" class="form-control @error('minute') is-invalid @enderror" name="minute" placeholder="{{ __('bap.minute') }}">
+                            @error('minute')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

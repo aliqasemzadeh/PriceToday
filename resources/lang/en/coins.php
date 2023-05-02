@@ -17,7 +17,7 @@ return [
     'TRON' => 'TRON',
     'Avalanche' => 'Avalanche',
     'Dai' => 'Dai',
-    'Uniswap' => '',
+    'Uniswap' => 'Uniswap',
     'Chainlink' => 'Chainlink',
     'Toncoin' => 'Toncoin',
     'LEO Token' => 'LEO Token',
