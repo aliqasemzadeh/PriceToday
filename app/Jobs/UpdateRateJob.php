@@ -69,7 +69,5 @@ class UpdateRateJob implements ShouldQueue
         } catch (\Exception $e) {
             Log::error("Update Rate:".$e->getMessage());
         }
-
-
     }
 }
