@@ -274,7 +274,7 @@ class SymbolSeeder extends Seeder
         $symbol->symbol = 'CRO';
         $symbol->title = 'Cronos';
         $symbol->coingecko_id = 'crypto-com-chain';
-        $symbol->coingecko_number = 3710;
+        $symbol->coingecko_number = 7310;
         $symbol->sort_order = 33;
         $symbol->save();
 
