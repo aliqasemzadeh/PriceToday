@@ -132,6 +132,11 @@ return [
     'please_login_first' => 'Please login first.',
     'minute' => 'Minute',
     'hour' => 'Hour',
+    'display_unit' => 'Display Unit',
+    'units' => [
+        'IRR' => 'Iran Rial',
+        'USDT' => 'Tether (USDT)'
+    ],
     'category_types' => [
         'article' => 'Article',
         'ticket' => 'Ticket',

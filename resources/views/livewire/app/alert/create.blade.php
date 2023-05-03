@@ -33,6 +33,18 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label" for="display_unit">{{ __('bap.display_unit') }}</label>
+                            <select wire:model="display_unit" class="form-control @error('display_unit') is-invalid @enderror" name="display_unit" placeholder="{{ __('bap.display_unit') }}">
+                                <option></option>
+                                <option value="USDT">{{ __('bap.units.USDT') }}</option>
+                                <option value="IRR">{{ __('bap.units.IRR') }}</option>
+                            </select>
+                            @error('display_unit')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
