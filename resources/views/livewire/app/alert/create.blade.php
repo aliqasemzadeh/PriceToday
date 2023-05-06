@@ -13,8 +13,8 @@
                             <label class="form-label" for="less_than">{{ __('bap.less_than') }}</label>
                             <div class="input-group mb-2">
                                 <input type="text" wire:model="less_than" class="form-control @error('less_than') is-invalid @enderror" name="less_than" placeholder="{{ __('bap.less_than') }}">
-                                <button class="btn" type="button" wire:click="minus_10_less_than">-10%</button>
-                                <button class="btn" type="button" wire:click="plus_10_less_than">+10%</button>
+                                <button class="btn" type="button" wire:click="minus_less_than">-5%</button>
+                                <button class="btn" type="button" wire:click="plus_less_than">+5%</button>
                             </div>
 
                             @error('less_than')
@@ -27,8 +27,8 @@
 
                             <div class="input-group mb-2">
                                 <input type="text" wire:model="more_than" class="form-control @error('more_than') is-invalid @enderror" name="more_than" placeholder="{{ __('bap.more_than') }}">
-                                <button class="btn" type="button" wire:click="minus_10_more_than">-10%</button>
-                                <button class="btn" type="button" wire:click="plus_10_more_than">+10%</button>
+                                <button class="btn" type="button" wire:click="minus_more_than">-5%</button>
+                                <button class="btn" type="button" wire:click="plus_more_than">+5%</button>
                             </div>
 
                             @error('more_than')
@@ -52,6 +52,17 @@
                                 <option value="IRR">{{ __('bap.units.IRR') }}</option>
                             </select>
                             @error('display_unit')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="on_time">{{ __('bap.on_time') }}</label>
+                            <select wire:model="on_time" class="form-control @error('on_time') is-invalid @enderror" name="on_time" placeholder="{{ __('bap.on_time') }}">
+                                <option value="disable">{{ __('bap.no') }}</option>
+                                <option value="enable">{{ __('bap.yes') }}</option>
+                            </select>
+                            @error('on_time')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

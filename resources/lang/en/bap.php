@@ -133,6 +133,9 @@ return [
     'minute' => 'Minute',
     'hour' => 'Hour',
     'display_unit' => 'Display Unit',
+    'on_time' => 'Time Alert',
+    'no' => 'No',
+    'yes' => 'Yes',
     'units' => [
         'IRR' => 'Iran Rial',
         'USDT' => 'Tether (USDT)'

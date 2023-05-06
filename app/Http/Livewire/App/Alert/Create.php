@@ -11,6 +11,7 @@ class Create extends Component
 {
     use LivewireAlert;
     public Symbol $symbol;
+    public AlertSymbol $alert;
 
     public $more_than;
     public $less_than;
@@ -24,45 +25,57 @@ class Create extends Component
     public function mount(Symbol $symbol)
     {
         $this->symbol = $symbol;
-        $this->less_than = $symbol->price;
-        $this->more_than = $symbol->price;
+
+        if($alert = AlertSymbol::where(['user_id' => auth()->user()->id, 'symbol_id' =>  $this->symbol->id])->first()) {
+
+            $this->less_than = $alert->less_than;
+            $this->more_than = $alert->more_than;
+            $this->change_percent = $alert->change_percent;
+            $this->hour = $alert->hour;
+            $this->minute = $alert->minute;
+            $this->display_unit = $alert->display_unit;
+            $this->on_time = 'enable';
+            $this->status = 'enable';
+
+        } else {
+            $this->less_than = $symbol->price;
+            $this->more_than = $symbol->price;
+        }
+
     }
 
-    public function plus_10_less_than()
+    public function plus_less_than($percent = 5)
     {
-        $this->less_than = $this->less_than + (0.1) * $this->less_than;
+        $this->less_than = $this->less_than + ($percent / 100) * $this->less_than;
     }
 
-    public function minus_10_less_than()
+    public function minus_less_than($percent = 5)
     {
-        $this->more_than = $this->more_than - (0.1) * $this->more_than;
+        $this->less_than = $this->less_than - ($percent / 100) * $this->less_than;
     }
 
 
-    public function minus_10_more_than()
+    public function minus_more_than($percent = 5)
     {
-        $this->more_than = $this->more_than - (0.1) * $this->more_than;
+        $this->more_than = $this->more_than - ($percent / 100) * $this->more_than;
     }
 
-    public function plus_10_more_than()
+    public function plus_more_than($percent = 5)
     {
-        $this->more_than = $this->more_than + (0.1) * $this->more_than;
+        $this->more_than = $this->more_than + ($percent / 100) * $this->more_than;
     }
-
-
 
     public function create_alert()
     {
         if(auth()->check()) {
             $this->validate([
-                'less_than' => [],
-                'more_than' => [],
-                'change_percent' => [],
-                'hour' => [],
-                'minute' => [],
-                'display_unit' => [],
-                'on_time' => [],
-                'status' => []
+                'less_than' => ['lt:more_than','nullable'],
+                'more_than' => ['gt:less_than','nullable'],
+                'change_percent' => ['nullable'],
+                'hour' => ['nullable'],
+                'minute' => ['nullable'],
+                'display_unit' => ['required'],
+                'on_time' => ['nullable'],
             ]);
 
             $alertSymbol = AlertSymbol::firstOrCreate([
@@ -76,9 +89,13 @@ class Create extends Component
             $alertSymbol->hour = $this->hour;
             $alertSymbol->minute = $this->minute;
             $alertSymbol->display_unit = $this->display_unit;
-            $alertSymbol->on_time = $this->on_time;
-            $alertSymbol->status = $this->status;
+            if($this->hour && $this->minute) {
+                $alertSymbol->on_time = 'enable';
+            }
+            $alertSymbol->status = 'enable';
             $alertSymbol->save();
+
+            $this->emit('hideModal');
 
             $this->alert('success', __('bap.added'));
 
