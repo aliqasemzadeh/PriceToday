@@ -15,8 +15,10 @@ class Create extends Component
     public $more_than;
     public $less_than;
     public $change_percent;
+    public $on_time;
     public $hour;
     public $minute;
+    public $status;
     public $display_unit;
 
     public function mount(Symbol $symbol)
@@ -40,7 +42,7 @@ class Create extends Component
 
             $alertSymbol = AlertSymbol::firstOrCreate([
                 'user_id' => auth()->user()->id,
-                'symbol_id' =>  $this->sumbol->id
+                'symbol_id' =>  $this->symbol->id
             ]);
 
             $alertSymbol->less_than = $this->less_than;
