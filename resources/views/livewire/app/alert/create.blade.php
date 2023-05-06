@@ -11,7 +11,12 @@
 
                         <div class="mb-3">
                             <label class="form-label" for="less_than">{{ __('bap.less_than') }}</label>
-                            <input type="text" wire:model="less_than" class="form-control @error('less_than') is-invalid @enderror" name="less_than" placeholder="{{ __('bap.less_than') }}">
+                            <div class="input-group mb-2">
+                                <input type="text" wire:model="less_than" class="form-control @error('less_than') is-invalid @enderror" name="less_than" placeholder="{{ __('bap.less_than') }}">
+                                <button class="btn" type="button">-10%</button>
+                                <button class="btn" type="button">+10%</button>
+                            </div>
+
                             @error('less_than')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -19,7 +24,13 @@
 
                         <div class="mb-3">
                             <label class="form-label" for="more_than">{{ __('bap.more_than') }}</label>
-                            <input type="text" wire:model="more_than" class="form-control @error('more_than') is-invalid @enderror" name="more_than" placeholder="{{ __('bap.more_than') }}">
+
+                            <div class="input-group mb-2">
+                                <input type="text" wire:model="more_than" class="form-control @error('more_than') is-invalid @enderror" name="more_than" placeholder="{{ __('bap.more_than') }}">
+                                <button class="btn" type="button">-10%</button>
+                                <button class="btn" type="button">+10%</button>
+                            </div>
+
                             @error('more_than')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

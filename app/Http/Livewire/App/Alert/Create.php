@@ -24,7 +24,32 @@ class Create extends Component
     public function mount(Symbol $symbol)
     {
         $this->symbol = $symbol;
+        $this->less_than = $symbol->price;
+        $this->more_than = $symbol->price;
     }
+
+    public function plus_10_less_than()
+    {
+        $this->less_than = $this->less_than + (0.1) * $this->less_than;
+    }
+
+
+    public function minus_10_more_than()
+    {
+        $this->less_than = $this->less_than - (0.1) * $this->less_than;
+    }
+
+    public function plus_10_more_than()
+    {
+        $this->more_than = $this->more_than + (0.1) * $this->more_than;
+    }
+
+
+    public function minus_10_less_than()
+    {
+        $this->more_than = $this->more_than - (0.1) * $this->more_than;
+    }
+
 
     public function create_alert()
     {
