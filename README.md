@@ -1,3 +1,4 @@
+<img src="https://github.com/aliqasemzadeh/PriceToday/raw/main/pricetoday.jpg">
 # PriceToday
 This is limited script to text message or any types message to user base on price change.
 in this script we list cryptos to make alerts for users.
