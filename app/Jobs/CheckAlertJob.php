@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class CheckAlertJob implements ShouldQueue
 {
@@ -29,9 +30,14 @@ class CheckAlertJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $symbolAlerts = AlertSymbol::where('sysmbol_id', $this->symbol->id)->get();
+        $symbolAlerts = AlertSymbol::where('status', 'active')->where('symbol_id', $this->symbol->id)->get();
         foreach ($symbolAlerts as $alert) {
+            if($alert->on_time == 'active') {
+                $now = Carbon::now();
+                Log::error($now->dateFormat('H'));
+            } else {
 
+            }
         }
     }
 }
