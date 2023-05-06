@@ -28,7 +28,14 @@ class Create extends Component
     {
         if(auth()->check()) {
             $this->validate([
-
+                'less_than' => [],
+                'more_than' => [],
+                'change_percent' => [],
+                'hour' => [],
+                'minute' => [],
+                'display_unit' => [],
+                'on_time' => [],
+                'status' => []
             ]);
 
             $alertSymbol = AlertSymbol::firstOrCreate([
