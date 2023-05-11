@@ -103,6 +103,7 @@ class Create extends Component
             $this->alert('success', __('bap.please_login_first'));
         }
     }
+
     public function render()
     {
         return view('livewire.app.alert.create');
