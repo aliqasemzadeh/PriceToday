@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div class="d-flex align-items-center">
-                                        <div>{{ \App\Utils\Format::price($symbol->price) }}</div>
+                                        <div>{{ \AliQasemzadeh\Format::price($symbol->price) }}</div>
                                         <div class="ms-auto">
                                             @if($symbol->change_24h > 0)
                                                 <span class="text-green d-inline-flex align-items-center lh-1">
