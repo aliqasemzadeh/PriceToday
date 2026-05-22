@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use App\Models\User;
 use App\Support\IranianMobileNormalizer;

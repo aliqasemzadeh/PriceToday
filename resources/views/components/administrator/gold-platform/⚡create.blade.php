@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use App\Models\PriceToday\GoldPlatform;
 use App\Support\GoldPlatformFormData;

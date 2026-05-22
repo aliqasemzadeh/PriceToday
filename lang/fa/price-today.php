@@ -87,6 +87,7 @@ return [
             'deleted_success' => 'پلتفرم با موفقیت حذف شد.',
             'name_placeholder' => 'مثلاً طلاسی',
             'slug_placeholder' => 'talasea',
+            'slug_help' => 'فقط حروف انگلیسی کوچک، اعداد و خط تیره. نام فایل لوگو همین مقدار خواهد بود.',
             'website_placeholder' => 'https://example.com',
             'description_help' => 'توضیحات کامل پلتفرم برای نمایش در سایت.',
             'daily_withdrawal_limit_million' => 'محدودیت برداشت روزانه (میلیون تومان)',

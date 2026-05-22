@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use Flux\Flux;
 use Illuminate\Support\Facades\Auth;

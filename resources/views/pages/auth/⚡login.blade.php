@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use App\Support\IranianMobileNormalizer;
 use Illuminate\Support\Facades\Auth;

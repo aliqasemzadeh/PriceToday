@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;

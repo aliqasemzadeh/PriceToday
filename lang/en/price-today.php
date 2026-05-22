@@ -87,6 +87,7 @@ return [
             'deleted_success' => 'Platform deleted successfully.',
             'name_placeholder' => 'e.g. Talasea',
             'slug_placeholder' => 'talasea',
+            'slug_help' => 'Lowercase English letters, numbers, and dashes only. The logo filename will use this value.',
             'website_placeholder' => 'https://example.com',
             'description_help' => 'Full platform description for display on the site.',
             'daily_withdrawal_limit_million' => 'Daily withdrawal limit (million Toman)',
