@@ -1,15 +1,17 @@
 <?php
 
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new
 #[Layout('layouts::administrator')]
-#[Title('app.administrator.menu.dashboard')]
 class extends Component
 {
-    //
+    public function render()
+    {
+        return $this->view()
+            ->title(__('app.administrator.menu.dashboard'));
+    }
 };
 ?>
 
