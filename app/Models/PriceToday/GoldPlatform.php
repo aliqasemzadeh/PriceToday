@@ -4,10 +4,13 @@ namespace App\Models\PriceToday;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 #[Fillable([
     'name',
     'slug',
+    'logo_file',
     'website_url',
     'referral_website_url',
     'description',
@@ -42,6 +45,17 @@ use Illuminate\Database\Eloquent\Model;
 ])]
 class GoldPlatform extends Model
 {
+    use SoftDeletes;
+
+    public function logoUrl(): ?string
+    {
+        if ($this->logo_file === null) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($this->logo_file);
+    }
+
     protected function casts(): array
     {
         return [
