@@ -33,6 +33,7 @@
                 <flux:input
                     wire:model="slug"
                     :label="__('price-today.gold_platforms.slug')"
+                    :description="__('price-today.administrator.gold_platforms.slug_help')"
                     :placeholder="__('price-today.administrator.gold_platforms.slug_placeholder')"
                     dir="ltr"
                 />

@@ -122,7 +122,9 @@ new class extends Component
         $payload = GoldPlatformFormData::payloadFromComponent($this);
 
         if ($this->logo !== null) {
-            $payload['logo_file'] = GoldPlatformLogoStorage::store($this->logo, $platform->logo_file);
+            $payload['logo_file'] = GoldPlatformLogoStorage::store($this->logo, $payload['slug'], $platform->logo_file);
+        } elseif ($platform->logo_file !== null && $platform->slug !== $payload['slug']) {
+            $payload['logo_file'] = GoldPlatformLogoStorage::syncFilename($payload['slug'], $platform->logo_file);
         }
 
         $platform->update($payload);

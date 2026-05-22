@@ -9,17 +9,36 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class GoldPlatformLogoStorage
 {
-    public static function store(TemporaryUploadedFile|UploadedFile $file, ?string $oldPath = null): string
+    public static function store(TemporaryUploadedFile|UploadedFile $file, string $slug, ?string $oldPath = null): string
     {
-        if ($oldPath !== null) {
+        $path = self::pathForSlug($slug);
+
+        if ($oldPath !== null && $oldPath !== $path) {
             Storage::disk('public')->delete($oldPath);
         }
-
-        $path = 'gold-platforms/logos/'.Str::uuid().'.webp';
 
         Storage::disk('public')->put($path, self::toWebp($file));
 
         return $path;
+    }
+
+    public static function syncFilename(string $slug, ?string $oldPath): ?string
+    {
+        if ($oldPath === null) {
+            return null;
+        }
+
+        $newPath = self::pathForSlug($slug);
+
+        if ($oldPath === $newPath) {
+            return $oldPath;
+        }
+
+        if (Storage::disk('public')->exists($oldPath)) {
+            Storage::disk('public')->move($oldPath, $newPath);
+        }
+
+        return $newPath;
     }
 
     public static function delete(?string $path): void
@@ -29,6 +48,11 @@ class GoldPlatformLogoStorage
         }
 
         Storage::disk('public')->delete($path);
+    }
+
+    public static function pathForSlug(string $slug): string
+    {
+        return 'gold-platforms/logos/'.Str::slug($slug).'.webp';
     }
 
     private static function toWebp(TemporaryUploadedFile|UploadedFile $file): string

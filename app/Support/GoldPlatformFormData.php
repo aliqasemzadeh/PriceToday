@@ -19,7 +19,7 @@ class GoldPlatformFormData
                 'required',
                 'string',
                 'max:255',
-                'alpha_dash',
+                'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
                 Rule::unique('gold_platforms', 'slug')->ignore($ignoreId),
             ],
             'logo' => ['nullable', 'image', 'max:2048'],

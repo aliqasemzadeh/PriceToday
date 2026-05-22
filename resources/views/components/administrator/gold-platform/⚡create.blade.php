@@ -4,7 +4,6 @@ use App\Models\PriceToday\GoldPlatform;
 use App\Support\GoldPlatformFormData;
 use App\Support\GoldPlatformLogoStorage;
 use Flux\Flux;
-use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -107,13 +106,6 @@ new class extends Component
         $this->modal('administrator-gold-platform-create')->show();
     }
 
-    public function updatedName(): void
-    {
-        if ($this->slug === '') {
-            $this->slug = Str::slug($this->name);
-        }
-    }
-
     public function save(): void
     {
         $this->validate(GoldPlatformFormData::validationRules());
@@ -121,7 +113,7 @@ new class extends Component
         $payload = GoldPlatformFormData::payloadFromComponent($this);
 
         if ($this->logo !== null) {
-            $payload['logo_file'] = GoldPlatformLogoStorage::store($this->logo);
+            $payload['logo_file'] = GoldPlatformLogoStorage::store($this->logo, $payload['slug']);
         }
 
         GoldPlatform::query()->create($payload);
