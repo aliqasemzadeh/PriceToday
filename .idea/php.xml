@@ -202,6 +202,12 @@
       <path value="$PROJECT_DIR$/vendor/livewire/flux" />
       <path value="$PROJECT_DIR$/vendor/_laravel_idea" />
       <path value="$PROJECT_DIR$/vendor/sadegh19b/laravel-persian-validation" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/locale-list" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/config" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/native-currency-names" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/native-locale-names" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/locales" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/native-country-names" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />

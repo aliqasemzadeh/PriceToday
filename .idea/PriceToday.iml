@@ -55,6 +55,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php85" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php86" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/_laravel_idea" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/config" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/locale-list" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/locales" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/native-country-names" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/native-currency-names" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/native-locale-names" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sadegh19b/laravel-persian-validation" />
     </content>
     <orderEntry type="inheritedJdk" />
