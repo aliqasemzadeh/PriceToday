@@ -10,5 +10,5 @@ new #[Layout('layouts::administrator')] class extends Component
 ?>
 
 <div>
-    {{-- Order your soul. Reduce your wants. - Augustine --}}
+    {{-- Life is available only in the present moment. - Thich Nhat Hanh --}}
 </div>

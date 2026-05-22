@@ -38,4 +38,12 @@ return [
         'cancel' => 'انصراف',
         'logged_out' => 'با موفقیت از حساب خارج شدید.',
     ],
+
+    'administrator' => [
+        'menu' => [
+            'dashboard' => 'داشبورد',
+            'users' => 'کاربرها',
+            'gold_platforms' => 'پلتفرم‌های طلا',
+        ],
+    ],
 ];

@@ -38,4 +38,12 @@ return [
         'cancel' => 'Cancel',
         'logged_out' => 'You have been signed out successfully.',
     ],
+
+    'administrator' => [
+        'menu' => [
+            'dashboard' => 'Dashboard',
+            'users' => 'Users',
+            'gold_platforms' => 'Gold platforms',
+        ],
+    ],
 ];
