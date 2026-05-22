@@ -10,3 +10,7 @@ Route::middleware('guest')->group(function () {
     Route::livewire('/login', 'pages::auth.login')->name('login');
     Route::livewire('/register', 'pages::auth.register')->name('register');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::livewire('/logout', 'pages::auth.logout')->name('logout');
+});

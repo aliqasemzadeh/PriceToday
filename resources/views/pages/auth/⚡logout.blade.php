@@ -1,60 +1,22 @@
 <?php
 
-use App\Support\IranianMobileNormalizer;
+use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Sadegh19b\LaravelPersianValidation\Rules\IranianMobile;
 
 new #[Layout('layouts::auth')] class extends Component
 {
-    #[Validate('required|string')]
-    public string $identifier = '';
-
-    #[Validate('required')]
-    public string $password = '';
-
-    public bool $remember = false;
-
-    public function login(): void
+    public function logout(): void
     {
-        $isEmail = $this->isEmailIdentifier();
+        Auth::logout();
 
-        if (! $isEmail) {
-            $this->identifier = IranianMobileNormalizer::normalize($this->identifier);
-        }
+        session()->invalidate();
+        session()->regenerateToken();
 
-        $this->validate([
-            'identifier' => array_filter([
-                'required',
-                'string',
-                $isEmail ? 'email' : new IranianMobile(format: 'zero', convertPersianNumbers: true),
-            ]),
-            'password' => ['required'],
-        ]);
+        Flux::toast(__('app.auth.logged_out'));
 
-        $user = $isEmail
-            ? Auth::getProvider()->retrieveByCredentials(['email' => $this->identifier])
-            : Auth::getProvider()->retrieveByCredentials(['mobile' => $this->identifier]);
-
-        if (! $user || ! Hash::check($this->password, $user->getAuthPassword())) {
-            $this->addError('identifier', __('app.auth.invalid_credentials'));
-
-            return;
-        }
-
-        Auth::login($user, $this->remember);
-
-        session()->regenerate();
-
-        $this->redirectIntended(default: route('home'), navigate: true);
-    }
-
-    protected function isEmailIdentifier(): bool
-    {
-        return str_contains($this->identifier, '@');
+        $this->redirect(route('login'), navigate: true);
     }
 };
 ?>
@@ -80,42 +42,31 @@ new #[Layout('layouts::auth')] class extends Component
                 </a>
             </div>
 
-            <flux:heading class="text-center" size="xl">{{ __('app.auth.welcome_back') }}</flux:heading>
-
-            <form wire:submit="login" class="flex flex-col gap-6">
-                <flux:input
-                    wire:model="identifier"
-                    :label="__('app.auth.identifier')"
-                    type="text"
-                    inputmode="text"
-                    autocomplete="username"
-                    placeholder="{{ __('app.auth.identifier_placeholder') }}"
-                />
-
-                <flux:field>
-                    <div class="mb-3 flex justify-between">
-                        <flux:label>{{ __('app.auth.password') }}</flux:label>
-
-                        <flux:link href="#" variant="subtle" class="text-sm">{{ __('app.auth.forgot_password') }}</flux:link>
-                    </div>
-
-                    <flux:input
-                        wire:model="password"
-                        type="password"
-                        autocomplete="current-password"
-                        placeholder="{{ __('app.auth.password_placeholder') }}"
-                    />
-                </flux:field>
-
-                <flux:checkbox wire:model="remember" :label="__('app.auth.remember_me')" />
-
-                <flux:button variant="primary" type="submit" class="w-full">{{ __('app.auth.log_in') }}</flux:button>
-            </form>
+            <flux:heading class="text-center" size="xl">{{ __('app.auth.logout_title') }}</flux:heading>
 
             <flux:subheading class="text-center">
-                {{ __('app.auth.sign_up_prompt') }}
-                <flux:link href="{{ route('register') }}" wire:navigate>{{ __('app.auth.sign_up_link') }}</flux:link>
+                {{ __('app.auth.logout_message') }}
             </flux:subheading>
+
+            <div class="flex flex-col gap-3">
+                <flux:button
+                    wire:click="logout"
+                    variant="primary"
+                    color="red"
+                    class="w-full"
+                >
+                    {{ __('app.auth.logout_button') }}
+                </flux:button>
+
+                <flux:button
+                    href="{{ route('home') }}"
+                    variant="ghost"
+                    class="w-full"
+                    wire:navigate
+                >
+                    {{ __('app.auth.cancel') }}
+                </flux:button>
+            </div>
 
             <flux:radio.group variant="segmented" x-model="$flux.appearance">
                 <flux:radio value="light" icon="sun">Light</flux:radio>
