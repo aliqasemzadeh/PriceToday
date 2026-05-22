@@ -8,7 +8,6 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        @livewireStyles
         @fluxAppearance
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
