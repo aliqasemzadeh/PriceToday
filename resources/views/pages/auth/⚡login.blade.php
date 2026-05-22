@@ -49,12 +49,23 @@ new #[Layout('layouts::auth')] class extends Component
 
         session()->regenerate();
 
-        $this->redirectIntended(default: route('home'), navigate: true);
+        $this->redirectIntended(default: route('administrator.dashboard'), navigate: true);
     }
 
     protected function isEmailIdentifier(): bool
     {
         return str_contains($this->identifier, '@');
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function validationAttributes(): array
+    {
+        return [
+            'identifier' => __('app.auth.identifier'),
+            'password' => __('app.auth.password'),
+        ];
     }
 };
 ?>

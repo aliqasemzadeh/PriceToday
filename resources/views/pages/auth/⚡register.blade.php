@@ -47,7 +47,7 @@ new #[Layout('layouts::auth')] class extends Component
 
         Flux::toast(__('app.auth.registered_success'));
 
-        $this->redirectIntended(default: route('home'), navigate: true);
+        $this->redirectIntended(default: route('administrator.dashboard'), navigate: true);
     }
 };
 ?>

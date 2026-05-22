@@ -1,14 +1,18 @@
 <?php
 
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::administrator')] class extends Component
+new
+#[Layout('layouts::administrator')]
+#[Title('app.administrator.menu.users')]
+class extends Component
 {
     //
 };
 ?>
 
 <div>
-    {{-- Life is available only in the present moment. - Thich Nhat Hanh --}}
+    <flux:heading size="xl">{{ __('app.administrator.menu.users') }}</flux:heading>
 </div>

@@ -1,14 +1,18 @@
 <?php
 
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::administrator')] class extends Component
+new
+#[Layout('layouts::administrator')]
+#[Title('app.administrator.menu.dashboard')]
+class extends Component
 {
     //
 };
 ?>
 
 <div>
-    {{-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Maria Skłodowska-Curie --}}
+    <flux:heading size="xl">{{ __('app.administrator.menu.dashboard') }}</flux:heading>
 </div>
