@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use App\Models\User;
 use App\Support\IranianMobileNormalizer;
@@ -45,7 +45,7 @@ new #[Layout('layouts::auth')] class extends Component
 
         session()->regenerate();
 
-        Flux::toast(__('app.auth.registered_success'));
+        Flux::toast(__('price-today.auth.registered_success'));
 
         $this->redirectIntended(default: route('administrator.dashboard'), navigate: true);
     }
@@ -73,49 +73,49 @@ new #[Layout('layouts::auth')] class extends Component
                 </a>
             </div>
 
-            <flux:heading class="text-center" size="xl">{{ __('app.auth.register_title') }}</flux:heading>
+            <flux:heading class="text-center" size="xl">{{ __('price-today.auth.register_title') }}</flux:heading>
 
             <form wire:submit="register" class="flex flex-col gap-6">
                 <flux:input
                     wire:model="name"
-                    :label="__('app.auth.name')"
+                    :label="__('price-today.auth.name')"
                     type="text"
                     autocomplete="name"
-                    placeholder="{{ __('app.auth.name_placeholder') }}"
+                    placeholder="{{ __('price-today.auth.name_placeholder') }}"
                 />
 
                 <flux:input
                     wire:model="mobile"
-                    :label="__('app.auth.mobile')"
+                    :label="__('price-today.auth.mobile')"
                     type="tel"
                     inputmode="tel"
                     autocomplete="tel"
-                    placeholder="{{ __('app.auth.mobile_placeholder') }}"
+                    placeholder="{{ __('price-today.auth.mobile_placeholder') }}"
                 />
 
                 <flux:input
                     wire:model="email"
-                    :label="__('app.auth.email_optional')"
+                    :label="__('price-today.auth.email_optional')"
                     type="email"
                     autocomplete="email"
-                    placeholder="{{ __('app.auth.email_placeholder') }}"
+                    placeholder="{{ __('price-today.auth.email_placeholder') }}"
                 />
 
                 <flux:input
                     wire:model="password"
-                    :label="__('app.auth.password')"
+                    :label="__('price-today.auth.password')"
                     type="password"
                     viewable
                     autocomplete="new-password"
-                    placeholder="{{ __('app.auth.password_placeholder') }}"
+                    placeholder="{{ __('price-today.auth.password_placeholder') }}"
                 />
 
-                <flux:button variant="primary" color="orange" type="submit" class="w-full">{{ __('app.auth.register') }}</flux:button>
+                <flux:button variant="primary" color="orange" type="submit" class="w-full">{{ __('price-today.auth.register') }}</flux:button>
             </form>
 
             <flux:subheading class="text-center">
-                {{ __('app.auth.log_in_prompt') }}
-                <flux:link href="{{ route('login') }}" wire:navigate>{{ __('app.auth.log_in_link') }}</flux:link>
+                {{ __('price-today.auth.log_in_prompt') }}
+                <flux:link href="{{ route('login') }}" wire:navigate>{{ __('price-today.auth.log_in_link') }}</flux:link>
             </flux:subheading>
 
             <flux:radio.group variant="segmented" x-model="$flux.appearance">
@@ -140,15 +140,15 @@ new #[Layout('layouts::auth')] class extends Component
             </div>
 
             <div class="font-base mb-6 text-3xl italic xl:text-4xl">
-                {{ __('app.auth.testimonial') }}
+                {{ __('price-today.auth.testimonial') }}
             </div>
 
             <div class="flex gap-4">
                 <flux:avatar src="https://fluxui.dev/img/demo/caleb.png" size="xl" />
 
                 <div class="flex flex-col justify-center font-medium">
-                    <div class="text-lg">{{ __('app.auth.testimonial_author') }}</div>
-                    <div class="text-zinc-300">{{ __('app.auth.testimonial_role') }}</div>
+                    <div class="text-lg">{{ __('price-today.auth.testimonial_author') }}</div>
+                    <div class="text-zinc-300">{{ __('price-today.auth.testimonial_role') }}</div>
                 </div>
             </div>
         </div>

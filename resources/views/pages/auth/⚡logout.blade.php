@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +14,7 @@ new #[Layout('layouts::auth')] class extends Component
         session()->invalidate();
         session()->regenerateToken();
 
-        Flux::toast(__('app.auth.logged_out'));
+        Flux::toast(__('price-today.auth.logged_out'));
 
         $this->redirect(route('login'), navigate: true);
     }
@@ -42,10 +42,10 @@ new #[Layout('layouts::auth')] class extends Component
                 </a>
             </div>
 
-            <flux:heading class="text-center" size="xl">{{ __('app.auth.logout_title') }}</flux:heading>
+            <flux:heading class="text-center" size="xl">{{ __('price-today.auth.logout_title') }}</flux:heading>
 
             <flux:subheading class="text-center">
-                {{ __('app.auth.logout_message') }}
+                {{ __('price-today.auth.logout_message') }}
             </flux:subheading>
 
             <div class="flex flex-col gap-3">
@@ -55,7 +55,7 @@ new #[Layout('layouts::auth')] class extends Component
                     color="red"
                     class="w-full"
                 >
-                    {{ __('app.auth.logout_button') }}
+                    {{ __('price-today.auth.logout_button') }}
                 </flux:button>
 
                 <flux:button
@@ -64,7 +64,7 @@ new #[Layout('layouts::auth')] class extends Component
                     class="w-full"
                     wire:navigate
                 >
-                    {{ __('app.auth.cancel') }}
+                    {{ __('price-today.auth.cancel') }}
                 </flux:button>
             </div>
 
@@ -90,15 +90,15 @@ new #[Layout('layouts::auth')] class extends Component
             </div>
 
             <div class="font-base mb-6 text-3xl italic xl:text-4xl">
-                {{ __('app.auth.testimonial') }}
+                {{ __('price-today.auth.testimonial') }}
             </div>
 
             <div class="flex gap-4">
                 <flux:avatar src="https://fluxui.dev/img/demo/caleb.png" size="xl" />
 
                 <div class="flex flex-col justify-center font-medium">
-                    <div class="text-lg">{{ __('app.auth.testimonial_author') }}</div>
-                    <div class="text-zinc-300">{{ __('app.auth.testimonial_role') }}</div>
+                    <div class="text-lg">{{ __('price-today.auth.testimonial_author') }}</div>
+                    <div class="text-zinc-300">{{ __('price-today.auth.testimonial_role') }}</div>
                 </div>
             </div>
         </div>

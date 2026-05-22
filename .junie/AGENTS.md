@@ -6,7 +6,7 @@
 4-TailwindCSS
 5-AlpineJS
 6-PHP 8.4
-7-All Text Must Translate in /lang/fa/app.php If you want to add new text add it in app.php.
+7-All Text Must Translate in /lang/fa/price-today.php If you want to add new text add it in price-today.php.
 8-Optimize Queries and use cache if you can.
 9-Try to use AlpineJS for UI and Livewire for Backend.
 10-We have to use modal for create and edit form.

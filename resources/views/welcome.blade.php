@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -26,7 +26,7 @@
                             href="{{ route('administrator.dashboard') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
                         >
-                            {{ __('app.administrator.menu.dashboard') }}
+                            {{ __('price-today.administrator.menu.dashboard') }}
                         </a>
                     @else
                         <a

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() === 'fa' ? 'rtl' : 'ltr' }}">
     <head>
         <meta charset="utf-8">
@@ -42,7 +42,7 @@
                     :current="request()->routeIs('administrator.dashboard')"
                     wire:navigate
                 >
-                    {{ __('app.administrator.menu.dashboard') }}
+                    {{ __('price-today.administrator.menu.dashboard') }}
                 </flux:sidebar.item>
 
                 <flux:sidebar.item
@@ -51,7 +51,7 @@
                     :current="request()->routeIs('administrator.users*')"
                     wire:navigate
                 >
-                    {{ __('app.administrator.menu.users') }}
+                    {{ __('price-today.administrator.menu.users') }}
                 </flux:sidebar.item>
 
                 <flux:sidebar.item
@@ -60,7 +60,7 @@
                     :current="request()->routeIs('administrator.gold-platforms*')"
                     wire:navigate
                 >
-                    {{ __('app.administrator.menu.gold_platforms') }}
+                    {{ __('price-today.administrator.menu.gold_platforms') }}
                 </flux:sidebar.item>
             </flux:sidebar.nav>
 
@@ -72,7 +72,7 @@
                     href="{{ route('logout') }}"
                     wire:navigate
                 >
-                    {{ __('app.auth.logout_button') }}
+                    {{ __('price-today.auth.logout_button') }}
                 </flux:sidebar.item>
             </flux:sidebar.nav>
 
@@ -82,7 +82,7 @@
 
                     <flux:menu>
                         <flux:menu.item icon="log-out" href="{{ route('logout') }}" wire:navigate>
-                            {{ __('app.auth.logout_button') }}
+                            {{ __('price-today.auth.logout_button') }}
                         </flux:menu.item>
                     </flux:menu>
                 </flux:dropdown>
@@ -100,7 +100,7 @@
 
                     <flux:menu>
                         <flux:menu.item icon="log-out" href="{{ route('logout') }}" wire:navigate>
-                            {{ __('app.auth.logout_button') }}
+                            {{ __('price-today.auth.logout_button') }}
                         </flux:menu.item>
                     </flux:menu>
                 </flux:dropdown>

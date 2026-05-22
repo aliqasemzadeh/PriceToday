@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -10,11 +10,11 @@ class extends Component
     public function render()
     {
         return $this->view()
-            ->title(__('app.administrator.menu.gold_platforms'));
+            ->title(__('price-today.administrator.menu.gold_platforms'));
     }
 };
 ?>
 
 <div>
-    <flux:heading size="xl">{{ __('app.administrator.menu.gold_platforms') }}</flux:heading>
+    <flux:heading size="xl">{{ __('price-today.administrator.menu.gold_platforms') }}</flux:heading>
 </div>
