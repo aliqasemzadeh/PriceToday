@@ -102,6 +102,7 @@ new #[Layout('layouts::auth')] class extends Component
                     <flux:input
                         wire:model="password"
                         type="password"
+                        viewable
                         autocomplete="current-password"
                         placeholder="{{ __('app.auth.password_placeholder') }}"
                     />

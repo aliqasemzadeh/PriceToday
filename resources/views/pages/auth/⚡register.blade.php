@@ -19,8 +19,6 @@ new #[Layout('layouts::auth')] class extends Component
 
     public string $password = '';
 
-    public string $password_confirmation = '';
-
     public function register(): void
     {
         $this->mobile = IranianMobileNormalizer::normalize($this->mobile);
@@ -33,7 +31,7 @@ new #[Layout('layouts::auth')] class extends Component
                 Rule::unique('users', 'mobile'),
             ],
             'email' => ['nullable', 'email', 'max:255', Rule::unique('users', 'email')],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
 
         $user = User::create([
@@ -107,14 +105,7 @@ new #[Layout('layouts::auth')] class extends Component
                     wire:model="password"
                     :label="__('app.auth.password')"
                     type="password"
-                    autocomplete="new-password"
-                    placeholder="{{ __('app.auth.password_placeholder') }}"
-                />
-
-                <flux:input
-                    wire:model="password_confirmation"
-                    :label="__('app.auth.password_confirmation')"
-                    type="password"
+                    viewable
                     autocomplete="new-password"
                     placeholder="{{ __('app.auth.password_placeholder') }}"
                 />
