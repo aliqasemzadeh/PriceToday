@@ -2,7 +2,9 @@
 
 namespace App\Models\PriceToday;
 
+use App\Support\GoldPlatformCache;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
@@ -46,6 +48,81 @@ use Illuminate\Support\Facades\Storage;
 class GoldPlatform extends Model
 {
     use SoftDeletes;
+
+    protected static function booted(): void
+    {
+        static::saved(function (GoldPlatform $platform) {
+            if ($platform->wasChanged('slug')) {
+                $originalSlug = $platform->getOriginal('slug');
+
+                if (is_string($originalSlug) && $originalSlug !== '') {
+                    GoldPlatformCache::forgetSlug($originalSlug);
+                }
+            }
+
+            GoldPlatformCache::forget($platform);
+        });
+
+        static::deleted(function (GoldPlatform $platform) {
+            GoldPlatformCache::forget($platform);
+        });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function displayTriState(?bool $value): string
+    {
+        if ($value === true) {
+            return __('price-today.gold_platforms.yes');
+        }
+
+        if ($value === false) {
+            return __('price-today.gold_platforms.no');
+        }
+
+        return __('price-today.gold_platforms.unknown');
+    }
+
+    public function triStateBadgeColor(?bool $value): string
+    {
+        if ($value === true) {
+            return 'green';
+        }
+
+        if ($value === false) {
+            return 'red';
+        }
+
+        return 'zinc';
+    }
+
+    public function formattedPercent(?float $value): string
+    {
+        if ($value === null) {
+            return '—';
+        }
+
+        return rtrim(rtrim(number_format($value, 2, '.', ''), '0'), '.').'%';
+    }
+
+    public function formattedWithdrawalLimit(): ?string
+    {
+        if ($this->daily_withdrawal_limit_toman === null) {
+            return null;
+        }
+
+        $millions = $this->daily_withdrawal_limit_toman / 1_000_000;
+
+        return number_format($millions).' '.__('price-today.gold_platforms.million_toman');
+    }
 
     public function logoUrl(): ?string
     {

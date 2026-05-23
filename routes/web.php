@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::livewire('/', 'pages::front.gold-platform.index')->name('home');
+Route::livewire('/platforms/{slug}', 'pages::front.gold-platform.view')->name('gold-platforms.view');
 
 Route::middleware('guest')->group(function () {
     Route::livewire('/login', 'pages::auth.login')->name('login');
