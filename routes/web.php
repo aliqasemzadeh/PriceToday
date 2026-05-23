@@ -13,7 +13,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::livewire('/logout', 'pages::auth.logout')->name('logout');
 
-    Route::prefix('account')->name('user.')->group(function () {
+    Route::prefix('user')->name('user.')->group(function () {
         Route::livewire('/', 'pages::user.dashboard.index')->name('dashboard');
         Route::livewire('/change-password', 'pages::user.dashboard.change-password')->name('change-password');
         Route::livewire('/change-email', 'pages::user.dashboard.change-email')->name('change-email');
