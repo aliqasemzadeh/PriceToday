@@ -67,4 +67,10 @@ return [
             'updated_success' => 'User updated successfully.',
         ],
     ],
+    'commands' => [
+        'assign_role' => [
+            'user_not_found' => 'User with ID :id was not found.',
+            'success' => 'Administrator role assigned to :name (ID: :id).',
+        ],
+    ],
 ];
