@@ -46,6 +46,12 @@
                         <flux:profile :name="auth()->user()->name" />
 
                         <flux:menu>
+                            <flux:menu.item icon="circle-user" href="{{ route('user.dashboard') }}" wire:navigate>
+                                {{ __('price-today.user.menu.dashboard') }}
+                            </flux:menu.item>
+
+                            <flux:menu.separator />
+
                             <flux:menu.item icon="log-out" href="{{ route('logout') }}" wire:navigate>
                                 {{ __('price-today.auth.logout_button') }}
                             </flux:menu.item>

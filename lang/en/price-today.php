@@ -158,6 +158,54 @@ return [
         'million_toman' => 'million Toman',
     ],
 
+    'user' => [
+        'save' => 'Save',
+        'current_password' => 'Current password',
+        'current_password_placeholder' => 'Enter your current password',
+        'new_password' => 'New password',
+
+        'menu' => [
+            'dashboard' => 'Account',
+            'account_settings' => 'Account settings',
+            'change_password' => 'Change password',
+            'change_email' => 'Change email',
+            'change_mobile' => 'Change mobile number',
+        ],
+
+        'dashboard' => [
+            'title' => 'Account settings',
+            'subheading' => 'Manage your account information and security.',
+            'profile_heading' => 'Profile',
+            'profile_subheading' => 'Your public account information.',
+            'security_heading' => 'Security',
+            'security_subheading' => 'Update your password, email, and mobile number.',
+            'no_email' => 'No email registered',
+        ],
+
+        'change_password' => [
+            'title' => 'Change password',
+            'heading' => 'Password',
+            'description' => 'Enter your current password before setting a new one.',
+            'success' => 'Password changed successfully.',
+        ],
+
+        'change_email' => [
+            'title' => 'Change email',
+            'heading' => 'Email',
+            'description' => 'Enter your current password before updating your email.',
+            'email_help' => 'Email is optional. If changed, email verification will be required again.',
+            'success' => 'Email updated successfully.',
+        ],
+
+        'change_mobile' => [
+            'title' => 'Change mobile number',
+            'heading' => 'Mobile number',
+            'description' => 'Enter your current password before updating your mobile number.',
+            'mobile_help' => 'Your mobile number is used to sign in to your account.',
+            'success' => 'Mobile number updated successfully.',
+        ],
+    ],
+
     'front' => [
         'home_title' => 'Price Today | Gold Platform Comparison',
         'home_heading' => 'Gold Sales Platforms',
