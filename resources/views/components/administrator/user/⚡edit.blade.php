@@ -23,6 +23,8 @@ new class extends Component
     #[On('panels.administrator.user.edit.assign-data')]
     public function assignData(int $userId): void
     {
+        $this->authorize('user-edit');
+
         $user = User::query()->findOrFail($userId);
 
         $this->userId = $user->id;
@@ -38,6 +40,8 @@ new class extends Component
 
     public function save(): void
     {
+        $this->authorize('user-edit');
+
         $this->mobile = IranianMobileNormalizer::normalize($this->mobile);
 
         $this->validate([

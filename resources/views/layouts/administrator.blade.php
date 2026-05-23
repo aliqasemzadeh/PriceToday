@@ -45,23 +45,27 @@
                     {{ __('price-today.administrator.menu.dashboard') }}
                 </flux:sidebar.item>
 
-                <flux:sidebar.item
-                    icon="users"
-                    href="{{ route('administrator.users') }}"
-                    :current="request()->routeIs('administrator.users*')"
-                    wire:navigate
-                >
-                    {{ __('price-today.administrator.menu.users') }}
-                </flux:sidebar.item>
+                @can('manage-users')
+                    <flux:sidebar.item
+                        icon="users"
+                        href="{{ route('administrator.users') }}"
+                        :current="request()->routeIs('administrator.users*')"
+                        wire:navigate
+                    >
+                        {{ __('price-today.administrator.menu.users') }}
+                    </flux:sidebar.item>
+                @endcan
 
-                <flux:sidebar.item
-                    icon="coins"
-                    href="{{ route('administrator.gold-platforms') }}"
-                    :current="request()->routeIs('administrator.gold-platforms*')"
-                    wire:navigate
-                >
-                    {{ __('price-today.administrator.menu.gold_platforms') }}
-                </flux:sidebar.item>
+                @can('manage-platforms')
+                    <flux:sidebar.item
+                        icon="coins"
+                        href="{{ route('administrator.gold-platforms') }}"
+                        :current="request()->routeIs('administrator.gold-platforms*')"
+                        wire:navigate
+                    >
+                        {{ __('price-today.administrator.menu.gold_platforms') }}
+                    </flux:sidebar.item>
+                @endcan
             </flux:sidebar.nav>
 
             <flux:sidebar.spacer />

@@ -20,9 +20,16 @@ Route::middleware('auth')->group(function () {
         Route::livewire('/change-mobile', 'pages::user.dashboard.change-mobile')->name('change-mobile');
     });
 
-    Route::prefix(config('price-today.administrator-route-prefix', 'admin'))->name('administrator.')->group(function () {
-        Route::livewire('/', 'pages::administrator.dashboard.index')->name('dashboard');
-        Route::livewire('/users', 'pages::administrator.user.index')->name('users');
-        Route::livewire('/gold-platforms', 'pages::administrator.gold-platform.index')->name('gold-platforms');
-    });
+    Route::prefix(config('price-today.administrator-route-prefix', 'admin'))
+        ->name('administrator.')
+        ->middleware('administrator.panel')
+        ->group(function () {
+            Route::livewire('/', 'pages::administrator.dashboard.index')->name('dashboard');
+            Route::livewire('/users', 'pages::administrator.user.index')
+                ->middleware('permission:user-edit|user-create|user-delete')
+                ->name('users');
+            Route::livewire('/gold-platforms', 'pages::administrator.gold-platform.index')
+                ->middleware('permission:platform-edit|platform-create|platform-delete')
+                ->name('gold-platforms');
+        });
 });

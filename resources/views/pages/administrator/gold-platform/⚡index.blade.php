@@ -21,6 +21,11 @@ class extends Component
 
     public string $sortDirection = 'asc';
 
+    public function mount(): void
+    {
+        $this->authorize('manage-platforms');
+    }
+
     public function sort(string $column): void
     {
         if ($this->sortBy === $column) {
@@ -44,6 +49,8 @@ class extends Component
 
     public function delete(int $goldPlatformId): void
     {
+        $this->authorize('platform-delete');
+
         GoldPlatform::query()->findOrFail($goldPlatformId)->delete();
 
         unset($this->goldPlatforms);
@@ -78,14 +85,16 @@ class extends Component
     <div class="flex flex-wrap items-center justify-between gap-4">
         <flux:heading size="xl">{{ __('price-today.administrator.menu.gold_platforms') }}</flux:heading>
 
-        <flux:tooltip content="{{ __('price-today.administrator.gold_platforms.create') }}">
-            <flux:button
-                variant="primary"
-                color="teal"
-                icon="plus"
-                wire:click="$dispatch('panels.administrator.gold-platform.create.assign-data')"
-            />
-        </flux:tooltip>
+        @can('platform-create')
+            <flux:tooltip content="{{ __('price-today.administrator.gold_platforms.create') }}">
+                <flux:button
+                    variant="primary"
+                    color="teal"
+                    icon="plus"
+                    wire:click="$dispatch('panels.administrator.gold-platform.create.assign-data')"
+                />
+            </flux:tooltip>
+        @endcan
     </div>
 
     <flux:card class="space-y-4">
@@ -116,7 +125,9 @@ class extends Component
                 <flux:table.column sortable :sorted="$sortBy === 'updated_at'" :direction="$sortDirection" wire:click="sort('updated_at')">
                     {{ __('price-today.administrator.gold_platforms.updated_at') }}
                 </flux:table.column>
-                <flux:table.column align="end">{{ __('price-today.administrator.gold_platforms.actions') }}</flux:table.column>
+                @canany(['platform-edit', 'platform-delete'])
+                    <flux:table.column align="end">{{ __('price-today.administrator.gold_platforms.actions') }}</flux:table.column>
+                @endcanany
             </flux:table.columns>
 
             <flux:table.rows>
@@ -165,38 +176,48 @@ class extends Component
                             {{ Jalalian::fromDateTime($platform->updated_at)->format('Y/m/d H:i') }}
                         </flux:table.cell>
 
-                        <flux:table.cell align="end">
-                            <div class="flex items-center justify-end gap-1">
-                                <flux:tooltip content="{{ __('price-today.administrator.gold_platforms.edit') }}">
-                                    <flux:button
-                                        size="xs"
-                                        variant="primary"
-                                        color="blue"
-                                        icon="pencil"
-                                        icon:variant="outline"
-                                        wire:click="$dispatch('panels.administrator.gold-platform.edit.assign-data', { goldPlatformId: {{ $platform->id }} })"
-                                    />
-                                </flux:tooltip>
+                        @canany(['platform-edit', 'platform-delete'])
+                            <flux:table.cell align="end">
+                                <div class="flex items-center justify-end gap-1">
+                                    @can('platform-edit')
+                                        <flux:tooltip content="{{ __('price-today.administrator.gold_platforms.edit') }}">
+                                            <flux:button
+                                                size="xs"
+                                                variant="primary"
+                                                color="blue"
+                                                icon="pencil"
+                                                icon:variant="outline"
+                                                wire:click="$dispatch('panels.administrator.gold-platform.edit.assign-data', { goldPlatformId: {{ $platform->id }} })"
+                                            />
+                                        </flux:tooltip>
+                                    @endcan
 
-                                <flux:tooltip content="{{ __('price-today.administrator.gold_platforms.delete') }}">
-                                    <flux:button
-                                        size="xs"
-                                        variant="primary"
-                                        color="red"
-                                        icon="trash"
-                                        icon:variant="outline"
-                                        wire:click="delete({{ $platform->id }})"
-                                        wire:confirm="{{ __('price-today.administrator.gold_platforms.delete_confirm') }}"
-                                    />
-                                </flux:tooltip>
-                            </div>
-                        </flux:table.cell>
+                                    @can('platform-delete')
+                                        <flux:tooltip content="{{ __('price-today.administrator.gold_platforms.delete') }}">
+                                            <flux:button
+                                                size="xs"
+                                                variant="primary"
+                                                color="red"
+                                                icon="trash"
+                                                icon:variant="outline"
+                                                wire:click="delete({{ $platform->id }})"
+                                                wire:confirm="{{ __('price-today.administrator.gold_platforms.delete_confirm') }}"
+                                            />
+                                        </flux:tooltip>
+                                    @endcan
+                                </div>
+                            </flux:table.cell>
+                        @endcanany
                     </flux:table.row>
                 @endforeach
             </flux:table.rows>
         </flux:table>
     </flux:card>
 
-    <livewire:administrator.gold-platform.create :key="'administrator-gold-platform-create'" />
-    <livewire:administrator.gold-platform.edit :key="'administrator-gold-platform-edit'" />
+    @can('platform-create')
+        <livewire:administrator.gold-platform.create :key="'administrator-gold-platform-create'" />
+    @endcan
+    @can('platform-edit')
+        <livewire:administrator.gold-platform.edit :key="'administrator-gold-platform-edit'" />
+    @endcan
 </div>

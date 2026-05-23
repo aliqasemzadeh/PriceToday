@@ -73,4 +73,5 @@ return [
             'success' => 'Administrator role assigned to :name (ID: :id).',
         ],
     ],
+    'unauthorized' => 'You do not have permission to perform this action.',
 ];

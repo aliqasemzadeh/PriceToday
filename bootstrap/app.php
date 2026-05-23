@@ -12,7 +12,21 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(fn () => route('login'));
-        $middleware->redirectUsersTo(fn () => route('administrator.dashboard'));
+        $middleware->redirectUsersTo(function () {
+            $user = auth()->user();
+
+            if ($user !== null && $user->can('access-administrator-panel')) {
+                return route('administrator.dashboard');
+            }
+
+            return route('user.dashboard');
+        });
+        $middleware->alias([
+            'administrator.panel' => \App\Http\Middleware\EnsureAdministratorPanelAccess::class,
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

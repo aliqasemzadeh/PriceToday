@@ -21,6 +21,8 @@ new class extends Component
     #[On('panels.administrator.user.create.assign-data')]
     public function assignData(): void
     {
+        $this->authorize('user-create');
+
         $this->reset(['name', 'mobile', 'email', 'password']);
         $this->resetValidation();
 
@@ -29,6 +31,8 @@ new class extends Component
 
     public function save(): void
     {
+        $this->authorize('user-create');
+
         $this->mobile = IranianMobileNormalizer::normalize($this->mobile);
 
         $this->validate([

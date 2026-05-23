@@ -79,13 +79,15 @@
                     </flux:sidebar.item>
                 </flux:sidebar.group>
 
-                <flux:sidebar.item
-                    icon="layout-dashboard"
-                    href="{{ route('administrator.dashboard') }}"
-                    wire:navigate
-                >
-                    {{ __('price-today.front.nav.dashboard') }}
-                </flux:sidebar.item>
+                @can('access-administrator-panel')
+                    <flux:sidebar.item
+                        icon="layout-dashboard"
+                        href="{{ route('administrator.dashboard') }}"
+                        wire:navigate
+                    >
+                        {{ __('price-today.front.nav.dashboard') }}
+                    </flux:sidebar.item>
+                @endcan
             </flux:sidebar.nav>
 
             <flux:sidebar.spacer />

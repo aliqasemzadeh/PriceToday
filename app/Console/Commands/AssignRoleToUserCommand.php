@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Support\Permissions;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -24,7 +25,7 @@ class AssignRoleToUserCommand extends Command
             return self::FAILURE;
         }
 
-        $user->assignRole('administrator');
+        $user->assignRole(Permissions::ADMINISTRATOR_ROLE);
 
         $this->info(__('app.commands.assign_role.success', [
             'name' => $user->name,

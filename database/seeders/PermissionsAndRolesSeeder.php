@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Support\Permissions;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -16,20 +17,11 @@ class PermissionsAndRolesSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $permissions = [
-            'user-edit',
-            'user-create',
-            'user-delete',
-            'platform-edit',
-            'platform-create',
-            'platform-delete',
-        ];
-
-        foreach ($permissions as $permission) {
+        foreach (Permissions::all() as $permission) {
             Permission::findOrCreate($permission, 'web');
         }
 
-        $administratorRole = Role::findOrCreate('administrator', 'web');
-        $administratorRole->syncPermissions($permissions);
+        $administratorRole = Role::findOrCreate(Permissions::ADMINISTRATOR_ROLE, 'web');
+        $administratorRole->syncPermissions(Permissions::all());
     }
 }

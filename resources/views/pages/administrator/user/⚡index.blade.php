@@ -20,6 +20,11 @@ class extends Component
 
     public string $sortDirection = 'desc';
 
+    public function mount(): void
+    {
+        $this->authorize('manage-users');
+    }
+
     public function sort(string $column): void
     {
         if ($this->sortBy === $column) {
@@ -68,14 +73,16 @@ class extends Component
     <div class="flex flex-wrap items-center justify-between gap-4">
         <flux:heading size="xl">{{ __('price-today.administrator.menu.users') }}</flux:heading>
 
-        <flux:tooltip content="{{ __('price-today.administrator.users.create') }}">
-            <flux:button
-                variant="primary"
-                color="teal"
-                icon="plus"
-                wire:click="$dispatch('panels.administrator.user.create.assign-data')"
-            />
-        </flux:tooltip>
+        @can('user-create')
+            <flux:tooltip content="{{ __('price-today.administrator.users.create') }}">
+                <flux:button
+                    variant="primary"
+                    color="teal"
+                    icon="plus"
+                    wire:click="$dispatch('panels.administrator.user.create.assign-data')"
+                />
+            </flux:tooltip>
+        @endcan
     </div>
 
     <flux:card class="space-y-4">
@@ -100,7 +107,9 @@ class extends Component
                 <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection" wire:click="sort('created_at')">
                     {{ __('price-today.administrator.users.created_at') }}
                 </flux:table.column>
-                <flux:table.column align="end">{{ __('price-today.administrator.users.actions') }}</flux:table.column>
+                @can('user-edit')
+                    <flux:table.column align="end">{{ __('price-today.administrator.users.actions') }}</flux:table.column>
+                @endcan
             </flux:table.columns>
 
             <flux:table.rows>
@@ -120,24 +129,30 @@ class extends Component
                             {{ Jalalian::fromDateTime($user->created_at)->format('Y/m/d H:i') }}
                         </flux:table.cell>
 
-                        <flux:table.cell align="end">
-                            <flux:tooltip content="{{ __('price-today.administrator.users.edit') }}">
-                                <flux:button
-                                    size="xs"
-                                    variant="primary"
-                                    color="blue"
-                                    icon="pencil"
-                                    icon:variant="outline"
-                                    wire:click="$dispatch('panels.administrator.user.edit.assign-data', { userId: {{ $user->id }} })"
-                                />
-                            </flux:tooltip>
-                        </flux:table.cell>
+                        @can('user-edit')
+                            <flux:table.cell align="end">
+                                <flux:tooltip content="{{ __('price-today.administrator.users.edit') }}">
+                                    <flux:button
+                                        size="xs"
+                                        variant="primary"
+                                        color="blue"
+                                        icon="pencil"
+                                        icon:variant="outline"
+                                        wire:click="$dispatch('panels.administrator.user.edit.assign-data', { userId: {{ $user->id }} })"
+                                    />
+                                </flux:tooltip>
+                            </flux:table.cell>
+                        @endcan
                     </flux:table.row>
                 @endforeach
             </flux:table.rows>
         </flux:table>
     </flux:card>
 
-    <livewire:administrator.user.create :key="'administrator-user-create'" />
-    <livewire:administrator.user.edit :key="'administrator-user-edit'" />
+    @can('user-create')
+        <livewire:administrator.user.create :key="'administrator-user-create'" />
+    @endcan
+    @can('user-edit')
+        <livewire:administrator.user.edit :key="'administrator-user-edit'" />
+    @endcan
 </div>

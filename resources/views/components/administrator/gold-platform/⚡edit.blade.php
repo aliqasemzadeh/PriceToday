@@ -101,6 +101,8 @@ new class extends Component
     #[On('panels.administrator.gold-platform.edit.assign-data')]
     public function assignData(int $goldPlatformId): void
     {
+        $this->authorize('platform-edit');
+
         $platform = GoldPlatform::query()->findOrFail($goldPlatformId);
 
         $this->goldPlatformId = $platform->id;
@@ -115,6 +117,8 @@ new class extends Component
 
     public function save(): void
     {
+        $this->authorize('platform-edit');
+
         $this->validate(GoldPlatformFormData::validationRules($this->goldPlatformId));
 
         $platform = GoldPlatform::query()->findOrFail($this->goldPlatformId);

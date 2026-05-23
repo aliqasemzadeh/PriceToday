@@ -99,6 +99,8 @@ new class extends Component
     #[On('panels.administrator.gold-platform.create.assign-data')]
     public function assignData(): void
     {
+        $this->authorize('platform-create');
+
         GoldPlatformFormData::resetComponent($this);
         $this->logo = null;
         $this->resetValidation();
@@ -108,6 +110,8 @@ new class extends Component
 
     public function save(): void
     {
+        $this->authorize('platform-create');
+
         $this->validate(GoldPlatformFormData::validationRules());
 
         $payload = GoldPlatformFormData::payloadFromComponent($this);

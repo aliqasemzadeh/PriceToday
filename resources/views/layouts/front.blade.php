@@ -38,9 +38,11 @@
                 @endguest
 
                 @auth
-                    <flux:button href="{{ route('administrator.dashboard') }}" variant="ghost" size="sm" icon="layout-dashboard" wire:navigate>
-                        {{ __('price-today.front.nav.dashboard') }}
-                    </flux:button>
+                    @can('access-administrator-panel')
+                        <flux:button href="{{ route('administrator.dashboard') }}" variant="ghost" size="sm" icon="layout-dashboard" wire:navigate>
+                            {{ __('price-today.front.nav.dashboard') }}
+                        </flux:button>
+                    @endcan
 
                     <flux:dropdown position="bottom" align="end">
                         <flux:profile :name="auth()->user()->name" />
@@ -84,9 +86,11 @@
                 @endguest
 
                 @auth
-                    <flux:sidebar.item icon="layout-dashboard" href="{{ route('administrator.dashboard') }}" wire:navigate>
-                        {{ __('price-today.front.nav.dashboard') }}
-                    </flux:sidebar.item>
+                    @can('access-administrator-panel')
+                        <flux:sidebar.item icon="layout-dashboard" href="{{ route('administrator.dashboard') }}" wire:navigate>
+                            {{ __('price-today.front.nav.dashboard') }}
+                        </flux:sidebar.item>
+                    @endcan
                     <flux:sidebar.item icon="log-out" href="{{ route('logout') }}" wire:navigate>
                         {{ __('price-today.auth.logout_button') }}
                     </flux:sidebar.item>
