@@ -260,4 +260,14 @@ return [
             'physical_store' => 'فروشگاه حضوری',
         ],
     ],
+    'commands' => [
+        'assign_role' => [
+            'user_not_found' => 'کاربر با شناسه :id یافت نشد.',
+            'success' => 'نقش مدیر سیستم به :name (شناسه: :id) اختصاص داده شد.',
+        ],
+        'password_recovery' => [
+            'user_not_found' => 'کاربر با شناسه :id یافت نشد.',
+            'success' => 'رمز عبور کاربر :name (شناسه: :id) با موفقیت تغییر کرد.',
+        ],
+    ],
 ];
