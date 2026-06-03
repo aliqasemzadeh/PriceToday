@@ -137,6 +137,16 @@ new class extends Component
             <flux:text class="mt-2">{{ __('price-today.administrator.gold_platforms.create_description') }}</flux:text>
         </div>
 
+        @if ($errors->any())
+            <flux:error>
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </flux:error>
+        @endif
+
         @include('components.administrator.gold-platform.form-fields')
 
         <flux:button type="submit" variant="primary" color="orange" class="w-full">

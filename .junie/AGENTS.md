@@ -6,8 +6,8 @@
 4-TailwindCSS
 5-AlpineJS
 6-PHP 8.4
-7-All Text Must Translate in /lang/fa/price-today.php If you want to add new text add it in price-today.php.
-8-Optimize Queries and use cache if you can.
+7-All Text Must Translate in /lang/en/lms.php If you want to add new text add it in lms.php.
+8-Optimize Queries check N + 1 problem.
 9-Try to use AlpineJS for UI and Livewire for Backend.
 10-We have to use modal for create and edit form.
 11-We have to use pagination for list.
@@ -23,22 +23,18 @@
 21-Use https://fluxui.dev/components/select#backend-search for select when database options.
 21-for event use full name of event assign-data name is not good use panels.administrator.learning-management.school.edit.assign-data
 22-When you want to load livewire component user <livewire:component-name :key="$componentId" />
-23-<flux:main> is container for all pages.
 24-After all livewire action we need Flux::toast('message');
 25-for actions use buttons with icon and tooltip.
-<flux:tooltip content="{{ __('price-today.import') }}">
+<flux:tooltip content="{{ __('lms.import') }}">
 <flux:button size="xs" variant="primary" color="teal" icon="upload" icon:variant="outline" wire:click="$dispatch('learning-management.student.import.assign-data', { classId: {{ $class->id }} })" />
 </flux:tooltip>
 
-                            <flux:tooltip content="{{ __('price-today.delete') }}">
-                                <flux:button size="xs" variant="primary" color="red" icon="trash" icon:variant="outline" wire:click="delete({{ $class->id }})" wire:confirm="{{ __('price-today.are_you_sure') }}" />
+                            <flux:tooltip content="{{ __('lms.delete') }}">
+                                <flux:button size="xs" variant="primary" color="red" icon="trash" icon:variant="outline" wire:click="delete({{ $class->id }})" wire:confirm="{{ __('lms.are_you_sure') }}" />
                             </flux:tooltip>
-26-All Date must be use Jalali Date. morilog/jalali
-27-Use https://github.com/morilog/jalali for date.
 28-For Table use https://fluxui.dev/components/table and add search in searchable fields top of <flux:table.columns>
 29-For Search and Fillter create use card and use <flux:card> and data of table use <flux:table.columns>
 30-https://fluxui.dev/components/pillbox#searchable use it for search.
-31-Use https://github.com/morilog/jalali for date.
 32-searchable for all select and search <flux:select searchable>
 33-Buttons use <flux:button> they have many colors base on action user can use. For example <flux:button color="orange">Save</flux:button> for save action.
 <flux:button variant="primary" color="zinc">Zinc</flux:button>
@@ -61,6 +57,87 @@
 <flux:button variant="primary" color="rose">Rose</flux:button>
 33-In forms and modals only user w-full buttons and only save
 34-try to use colors
-35-I want to use signle file livewire component
-36-I use pages:: for livewire page.
-37-If possible, change class base to single file compoenet.
+35- for edit and delete use these buttons
+<flux:tooltip content="{{ __('lms.edit') }}">
+<flux:button size="xs" variant="primary" color="blue" icon="pencil" icon:variant="outline" wire:click="$dispatch('panels.administrator.user.edit.assign-data', { user: {{ $user->id }} })" />
+</flux:tooltip>
+
+                                    <flux:tooltip content="{{ __('lms.delete') }}">
+                                        <flux:button size="xs" variant="primary" color="red" icon="trash" icon:variant="outline" wire:click="delete({{ $user->id }})" wire:confirm="{{ __('lms.are_you_sure') }}" />
+                                    </flux:tooltip>
+36-Livewire events use Livewire\Attributes\On; and use $this->dispatch('event-name');
+<?php // resources/views/components/⚡dashboard.blade.php
+ 
+use Livewire\Attributes\On;
+use Livewire\Component;
+ 
+new class extends Component {
+    #[On('post-created')] 
+    public function updatePostList($title)
+    {
+        Flux::toast("New post created: {$title}");
+    }
+};
+37-never use protected $listeners more about events in livewire https://livewire.laravel.com/docs/4.x/events
+38-Control modals in livewire
+     // Control "confirm" modals anywhere on the page...
+        Flux::modal('confirm')->show();
+        Flux::modal('confirm')->close();
+        // Closes all modals on the page...
+        Flux::modals()->close();
+
+39-Here is example of page with flux:table and create button
+<div>
+    <div class="space-y-6">
+        <div class="flex items-center justify-between">
+            <flux:heading size="xl">{{ __('lms.users') }}</flux:heading>
+
+            <flux:modal.trigger name="user-create-modal">
+                <flux:button variant="primary" color="teal" icon="plus">
+                    {{ __('lms.create_user') }}
+                </flux:button>
+            </flux:modal.trigger>
+
+        </div>
+
+        <flux:card>
+            <div class="mb-4">
+                <flux:input wire:model.live.debounce.300ms="search" icon="search" placeholder="{{ __('lms.search') }}..." />
+            </div>
+
+            <flux:table :paginate="$this->users">
+                <flux:table.columns>
+                    <flux:table.column>{{ __('lms.first_name') }}</flux:table.column>
+                    <flux:table.column>{{ __('lms.last_name') }}</flux:table.column>
+                    <flux:table.column>{{ __('lms.email') }}</flux:table.column>
+                    <flux:table.column align="end">{{ __('lms.actions') }}</flux:table.column>
+                </flux:table.columns>
+
+                <flux:table.rows>
+                    @foreach ($this->users as $user)
+                        <flux:table.row :key="$user->id">
+                            <flux:table.cell>{{ $user->first_name }}</flux:table.cell>
+                            <flux:table.cell>{{ $user->last_name }}</flux:table.cell>
+                            <flux:table.cell>{{ $user->email }}</flux:table.cell>
+                            <flux:table.cell align="end">
+                                <div class="flex justify-end gap-2">
+                                    <flux:tooltip content="{{ __('lms.edit') }}">
+                                        <flux:button size="xs" variant="primary" color="blue" icon="pencil" icon:variant="outline" wire:click="$dispatch('panels.administrator.user.edit.assign-data', { user: {{ $user->id }} })" />
+                                    </flux:tooltip>
+
+                                    <flux:tooltip content="{{ __('lms.delete') }}">
+                                        <flux:button size="xs" variant="primary" color="red" icon="trash" icon:variant="outline" wire:click="delete({{ $user->id }})" wire:confirm="{{ __('lms.are_you_sure') }}" />
+                                    </flux:tooltip>
+                                </div>
+                            </flux:table.cell>
+                        </flux:table.row>
+                    @endforeach
+                </flux:table.rows>
+            </flux:table>
+        </flux:card>
+    </div>
+
+    <livewire:user.create />
+    <livewire:user.edit />
+</div>
+40-For per_page use  ->paginate(config('lms.per_page'));
